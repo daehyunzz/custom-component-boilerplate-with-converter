@@ -1,0 +1,159 @@
+{
+    "Content": [
+        {
+            "Name": "className",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": "",
+            "InitialValue": ""
+        },
+        {
+            "Name": "color",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": "#ff625d",
+            "InitialValue": "#ff625d"
+        },
+        {
+            "Name": "dropdown",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "literal": ["Apple", "Banana", "Cherry"],
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "Dropdown",
+                "value": ["Apple", "Banana", "Cherry"]
+            },
+            "Basic": 1,
+            "DefaultValue": "Apple",
+            "InitialValue": "Apple"
+        },
+        {
+            "Name": "spinner",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "number"
+                }
+            ],
+            "Control": {
+                "type": "Spinner",
+                "value": [1, null]
+            },
+            "Basic": 1,
+            "DefaultValue": 1,
+            "InitialValue": 1
+        },
+        {
+            "Name": "objectArray",
+            "Type": [
+                {
+                    "isArray": true,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "label",
+                            "Type": [
+                                {
+                                    "isArray": false,
+                                    "isObject": false,
+                                    "type": "string"
+                                }
+                            ],
+                            "DefaultValue": "",
+                            "InitialValue": ""
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": [{ "label": "testData1" }, { "label": "testData2" }],
+            "InitialValue": [{ "label": "testData1" }, { "label": "testData2" }],
+            "Basic": 1,
+            "Description": "Array of object."
+        },
+        {
+            "Name": "objectNotArray",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "label",
+                            "Type": [
+                                {
+                                    "isArray": false,
+                                    "isObject": false,
+                                    "type": "string"
+                                }
+                            ],
+                            "DefaultValue": "",
+                            "InitialValue": ""
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": { "label": "testData1" },
+            "InitialValue": { "label": "testData1" },
+            "Basic": 1,
+            "Description": "object."
+        },
+        {
+            "Name": "date",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": "1970-01-01",
+            "InitialValue": "1970-01-01"
+        }
+    ],
+    "Style": [],
+    "Event": [
+        {
+            "Name": "onChange",
+            "Type": "void",
+            "NewValueLocation": { "Index": 0 }
+        },
+        {
+            "Name": "onMouseDown",
+            "Type": "void"
+        }
+    ]
+}

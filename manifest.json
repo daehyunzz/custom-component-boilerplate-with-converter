@@ -1,0 +1,11 @@
+{
+    "packageName": "superux-client",
+    "name": {
+        "en": "SuperUX",
+        "ko": "SuperUX"
+    },
+    "icon": "wapl/icon.svg",
+    "version": "0.0.1",
+    "entry": "src/index.tsx",
+    "widgets": []
+}

@@ -1,0 +1,21 @@
+{
+    "Content": [
+        {
+            "Name": "className",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": ""
+        }
+    ],
+    "Style": [],
+    "Event": []
+}

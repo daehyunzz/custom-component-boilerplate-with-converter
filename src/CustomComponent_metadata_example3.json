@@ -1,0 +1,276 @@
+{
+    "Content": [
+        {
+            "Name": "className",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": "",
+            "InitialValue": ""
+        },
+        {
+            "Name": "type",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "literal": ["bar", "doughnut", "line", "polarArea", "radar"],
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "Dropdown",
+                "value": ["bar", "doughnut", "line", "polarArea", "radar"]
+            },
+            "Basic": 1,
+            "DefaultValue": "bar",
+            "InitialValue": "bar"
+        },
+        {
+            "Name": "labels",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "value",
+                            "Type": [
+                                {
+                                    "isArray": true,
+                                    "isObject": false,
+                                    "type": "object"
+                                }
+                            ],
+                            "DefaultValue": [],
+                            "InitialValue": []
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": { "value": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"] },
+            "InitialValue": { "value": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"] },
+            "Basic": 1,
+            "Description": "object."
+        },
+        {
+            "Name": "label",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "string"
+                }
+            ],
+            "Control": {
+                "type": "TextField"
+            },
+            "Basic": 1,
+            "DefaultValue": "# of Votes",
+            "InitialValue": "# of Votes"
+        },
+        {
+            "Name": "data",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "value",
+                            "Type": [
+                                {
+                                    "isArray": true,
+                                    "isObject": false,
+                                    "type": "object"
+                                }
+                            ],
+                            "DefaultValue": [],
+                            "InitialValue": []
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": { "value": [12, 19, 3, 5, 2, 3] },
+            "InitialValue": { "value": [12, 19, 3, 5, 2, 3] },
+            "Basic": 1,
+            "Description": "object."
+        },
+        {
+            "Name": "backgroundColor",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "value",
+                            "Type": [
+                                {
+                                    "isArray": true,
+                                    "isObject": false,
+                                    "type": "object"
+                                }
+                            ],
+                            "DefaultValue": [],
+                            "InitialValue": []
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": {
+                "value": [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)"
+                ]
+            },
+            "InitialValue": {
+                "value": [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)"
+                ]
+            },
+            "Basic": 1,
+            "Description": "object."
+        },
+        {
+            "Name": "borderColor",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": true,
+                    "type": [
+                        {
+                            "Name": "value",
+                            "Type": [
+                                {
+                                    "isArray": true,
+                                    "isObject": false,
+                                    "type": "object"
+                                }
+                            ],
+                            "DefaultValue": [],
+                            "InitialValue": []
+                        }
+                    ]
+                }
+            ],
+            "Control": {
+                "type": "TextArea"
+            },
+            "DefaultValue": {
+                "value": [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)"
+                ]
+            },
+            "InitialValue": {
+                "value": [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)"
+                ]
+            },
+            "Basic": 1,
+            "Description": "object."
+        },
+        {
+            "Name": "borderWidth",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "number"
+                }
+            ],
+            "Control": {
+                "type": "Spinner"
+            },
+            "Basic": 1,
+            "DefaultValue": 2,
+            "InitialValue": 2
+        },
+        {
+            "Name": "chartWidth",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "number"
+                }
+            ],
+            "Control": {
+                "type": "Spinner"
+            },
+            "Basic": 1,
+            "DefaultValue": 600,
+            "InitialValue": 600
+        },
+        {
+            "Name": "chartHeight",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "number"
+                }
+            ],
+            "Control": {
+                "type": "Spinner"
+            },
+            "Basic": 1,
+            "DefaultValue": 600,
+            "InitialValue": 600
+        },
+        {
+            "Name": "fontSize",
+            "Type": [
+                {
+                    "isArray": false,
+                    "isObject": false,
+                    "type": "number"
+                }
+            ],
+            "Control": {
+                "type": "Spinner"
+            },
+            "Basic": 1,
+            "DefaultValue": 20,
+            "InitialValue": 20
+        }
+    ],
+    "Style": [],
+    "Event": []
+}
