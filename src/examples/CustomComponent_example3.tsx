@@ -1,3 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable object-shorthand */
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-void */
+/* eslint-disable camelcase */
+
 import * as React from 'react';
 import * as chart_js_4_3_3 from 'chart.js';
 

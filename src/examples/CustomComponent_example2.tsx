@@ -1,3 +1,10 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-const */
+
 import * as React from 'react';
 
 const CustomComponent: React.FC<any> = React.forwardRef<any, any>(
