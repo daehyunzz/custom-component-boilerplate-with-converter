@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "*": ["*"]
+        },
+        "noImplicitAny": false
+    }
+}
