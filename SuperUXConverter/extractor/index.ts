@@ -48,5 +48,5 @@ export const generateSuperUXFiles = (targetFilePath: string, resultFilePath: str
     generateCustomComponentJsFile(resultJsFilePath);
     generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
 
-    console.log(`${resultFilePath} 폴더에 파일 생성 완료`);
+    console.log(`${resultFilePath} 폴더에 ${name} 파일 생성 완료`);
 };
