@@ -58,6 +58,20 @@ const generateBooleanContentObject = ({ name, type }) => {
     };
 };
 
+// Color
+const generateColorContentObject = ({ name, type }) => {
+    return {
+        Name: name,
+        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Control: {
+            type: 'TextField',
+        },
+        DefaultValue: '#ff625d',
+        InitialValue: 'ff625d',
+        Basic: 1,
+    };
+};
+
 // literal
 const generateLiteralContentObject = ({ name, type }) => {
     return {
@@ -132,6 +146,10 @@ export const generateContentObject = typeInfo => {
 
     if (typeInfo.type === 'boolean') {
         return generateBooleanContentObject(typeInfo);
+    }
+
+    if (typeInfo.type === 'Color') {
+        return generateColorContentObject(typeInfo);
     }
 
     if (Array.isArray(typeInfo.type) && typeInfo.type?.every(t => typeof t !== 'object')) {
