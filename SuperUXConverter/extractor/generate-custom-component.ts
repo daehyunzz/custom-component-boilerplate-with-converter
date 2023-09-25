@@ -4,7 +4,7 @@ import { getFileContent, generateFileContent } from './file-content';
 const replaceUnnecessaryWords = (fileContent: string) => {
     const firstContentIndex = fileContent.indexOf('React.forwardRef(');
     const lastContentIndex = fileContent.indexOf('export');
-    return fileContent.slice(firstContentIndex, lastContentIndex).replace(/\/\*#__PURE__\*\//, '');
+    return fileContent.slice(firstContentIndex, lastContentIndex).replace(/\/\*#__PURE__\*\//g, '');
 };
 
 export const generateCustomComponentJsFile = (transpiledFilePath: string) => {
