@@ -32,8 +32,13 @@ const generateSuperUXComponentRecursively = (fileOrFolderPath, resultPath) => {
         return;
     }
 
-    generateSuperUXComponentRecursively(
-        componentFilePath,
-        path.join(resultFileBasePath, ...componentFilePath.split('/').slice(2))
-    );
+    if (fs.existsSync(componentFilePath) === false) {
+        console.error('해당 경로에 대상 파일이 존재하지 않습니다.');
+        return;
+    }
+
+    const paths = componentFilePath.split('/');
+    const restResultPath = !paths[0].startsWith('.') ? paths.slice(1) : paths.slice(2);
+
+    generateSuperUXComponentRecursively(componentFilePath, path.join(resultFileBasePath, ...restResultPath));
 })();
