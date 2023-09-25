@@ -171,6 +171,7 @@ const generateContentObjectWithoutSomeProps = typeInfo => {
     const { Control, Basic, ...rest } = generateObjectContentObject(typeInfo);
     return rest;
 };
+
 const generateContentObjectsWithoutSomeProps = typeInfos => {
     return typeInfos.map(typeInfo => generateContentObjectWithoutSomeProps(typeInfo));
 };

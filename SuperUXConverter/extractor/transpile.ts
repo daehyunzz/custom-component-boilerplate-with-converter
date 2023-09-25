@@ -2,7 +2,7 @@
 import { execSync } from 'child_process';
 
 export const transpileTsComponent = (targetFilePath: string, resultFilePath: string) => {
-    const command = `npx swc ${targetFilePath} -d ${resultFilePath} --config-file .swcrc`;
+    const command = `npx swc ./${targetFilePath} -d ${resultFilePath} --config-file .swcrc`;
 
     // @ts-ignore
     execSync(command, (error, stdout) => {
