@@ -36,8 +36,9 @@ export default CustomComponent; // 조건 1-3
 
 ## 사용법
 ```bash
-> npm run extract 타겟_컴포넌트_경로
-# ex) npm run ./SuperUXConverter/Example.tsx
+> npm run extract (타겟_컴포넌트_폴더_경로 | 타겟_컴포넌트_파일_경로)
+# ex) npm run SuperUXConverter/Examples/Test1/Example.tsx
+# ex) npm run SuperUXConverter/Examples
 ```
 
 ## 엣지 케이스가 존재할 수 있습니다!
