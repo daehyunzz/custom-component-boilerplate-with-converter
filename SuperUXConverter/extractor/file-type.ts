@@ -67,7 +67,7 @@ const generateColorContentObject = ({ name, type }) => {
             type: 'TextField',
         },
         DefaultValue: '#ff625d',
-        InitialValue: 'ff625d',
+        InitialValue: '#ff625d',
         Basic: 1,
     };
 };
