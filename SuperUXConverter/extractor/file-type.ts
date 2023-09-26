@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
 // ReactNode
-const generateReactNodeContentObject = ({ name, type }) => {
+export const generateReactNodeContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'ReactNode',
         },
@@ -15,10 +15,10 @@ const generateReactNodeContentObject = ({ name, type }) => {
 };
 
 // string
-const generateStringContentObject = ({ name, type }) => {
+export const generateStringContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'TextField',
         },
@@ -29,10 +29,10 @@ const generateStringContentObject = ({ name, type }) => {
 };
 
 // number
-const generateNumberContentObject = ({ name, type }) => {
+export const generateNumberContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'Spinner',
             value: [0, null],
@@ -44,10 +44,10 @@ const generateNumberContentObject = ({ name, type }) => {
 };
 
 // boolean
-const generateBooleanContentObject = ({ name, type }) => {
+export const generateBooleanContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'DropDown',
             value: [true, false],
@@ -59,10 +59,10 @@ const generateBooleanContentObject = ({ name, type }) => {
 };
 
 // Color
-const generateColorContentObject = ({ name, type }) => {
+export const generateColorContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'TextField',
         },
@@ -73,22 +73,22 @@ const generateColorContentObject = ({ name, type }) => {
 };
 
 // literal
-const generateLiteralContentObject = ({ name, type }) => {
+export const generateLiteralContentObject = ({ name, type }) => {
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'Dropdown',
             value: type,
         },
         DefaultValue: type[0],
-        initialValue: type[0],
+        InitialValue: type[0],
         Basic: 1,
     };
 };
 
 // object
-const generateObjectContentObject = ({ name, type }) => {
+export const generateObjectContentObject = ({ name, type }) => {
     const isArray = typeof type === 'object' && !!type.isArray;
     const isObject = Array.isArray(type) || (isArray && typeof type?.type === 'object');
 
@@ -106,7 +106,7 @@ const generateObjectContentObject = ({ name, type }) => {
 
     return {
         Name: name,
-        Type: [generateContentTypeObjectsWithoutSomeProps(type)],
+        Type: [generateContentTypeObject(type)],
         Control: {
             type: 'TextArea',
         },
@@ -164,7 +164,7 @@ export const generateContentObjects = typeInfos => {
     return typeInfos.map(typeInfo => generateContentObject(typeInfo));
 };
 
-const generateContentObjectWithoutSomeProps = typeInfo => {
+export const generateContentObjectWithoutSomeProps = typeInfo => {
     if (typeInfo.type === 'ReactNode' || typeInfo === 'ReactNode') {
         const { Control, Basic, ...rest } = generateReactNodeContentObject(typeInfo);
         return rest;
@@ -190,12 +190,12 @@ const generateContentObjectWithoutSomeProps = typeInfo => {
     return rest;
 };
 
-const generateContentObjectsWithoutSomeProps = typeInfos => {
+export const generateContentObjectsWithoutSomeProps = typeInfos => {
     return typeInfos.map(typeInfo => generateContentObjectWithoutSomeProps(typeInfo));
 };
 
 // Control과 Basic 제거
-const generateContentTypeObjectsWithoutSomeProps = typeInfo => {
+export const generateContentTypeObject = typeInfo => {
     const isArray = typeof typeInfo === 'object' && !!typeInfo.isArray;
     const isObject =
         (Array.isArray(typeInfo) && typeInfo.every(t => typeof t === 'object')) ||
@@ -222,25 +222,6 @@ const generateContentTypeObjectsWithoutSomeProps = typeInfo => {
             type,
         };
     }
-
-    return {
-        isArray,
-        isObject,
-        type,
-    };
-};
-
-export const generateContentTypeObjects = typeInfo => {
-    // 배열 여부 ex) number[];
-    const isArray = typeof typeInfo === 'object' && !!typeInfo.isArray;
-    // object 타입 여부 ex) object;
-    const isObject = Array.isArray(typeInfo) || (isArray && typeof typeInfo?.type === 'object');
-    const type = (() => {
-        if (isObject && isArray) return generateContentObjects(typeInfo.type);
-        if (isObject) return generateContentObjects(typeInfo.type.map(t => (t.name ? t : { name: t, type: t })));
-        if (isArray) return generateContentObject(typeInfo.type);
-        return typeInfo.type;
-    })();
 
     return {
         isArray,
