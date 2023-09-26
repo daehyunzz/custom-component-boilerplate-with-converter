@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import { exec } from 'child_process';
 import { getFileContent, generateFileContent } from './file-content';
 
 const replaceUnnecessaryWords = (fileContent: string) => {
@@ -19,10 +20,21 @@ const injectRef = (fileContent: string) => {
     return result;
 };
 
+const prettierCodeAsync = (filePath: string) => {
+    // @ts-ignore
+    exec(`npx prettier --write ${filePath}`, error => {
+        if (error) {
+            console.error(`prettier 명령어 실행 중 오류 발생: ${error}`);
+        }
+        console.log(`${filePath} prettier 적용 완료`);
+    });
+};
+
 export const generateCustomComponentJsFile = (transpiledFilePath: string) => {
     const transpiledJsFileContent = getFileContent(transpiledFilePath);
     const replacedComponentJsFileContent = replaceUnnecessaryWords(transpiledJsFileContent);
     const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
 
     generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent);
+    prettierCodeAsync(transpiledFilePath);
 };

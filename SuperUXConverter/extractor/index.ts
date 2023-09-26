@@ -32,12 +32,11 @@ import { generateCustomComponentJsFile } from './generate-custom-component';
  * export default CustomComponent; // 조건 3
  *
  * @param targetFilePath 커스텀 컴포넌트 파일 경로
- * @param resultFilePath 결과 파일을 저장할 경로
+ * @param resultFolderPath 결과 파일을 저장할 경로
  */
-export const generateSuperUXFiles = (targetFilePath: string, resultFilePath: string) => {
+export const generateSuperUXFiles = (targetFilePath: string, resultFolderPath: string) => {
     const name = getFileName(targetFilePath);
-    const [resultFileBasePath] = resultFilePath.split('/');
-    const resultFolderPath = resultFilePath;
+    const [resultFileBasePath] = resultFolderPath.split('/');
     const resultJsFilePath = path.join(resultFolderPath, `${name}.js`);
     const resultMetaDataFilePath = path.join(resultFolderPath, `${name}.json`);
 
@@ -48,5 +47,5 @@ export const generateSuperUXFiles = (targetFilePath: string, resultFilePath: str
     generateCustomComponentJsFile(resultJsFilePath);
     generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
 
-    console.log(`${resultFilePath} 폴더에 ${name} 파일 생성 완료`);
+    console.log(`${resultFolderPath} 폴더에 ${name} 파일 생성 완료`);
 };
