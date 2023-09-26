@@ -38,7 +38,7 @@ const generateSuperUXComponentRecursively = (fileOrFolderPath, resultPath) => {
     }
 
     const paths = componentFilePath.split('/');
-    const restResultPath = !paths[0].startsWith('./') ? paths.slice(1) : paths.slice(2);
+    const restResultPath = !paths[0].startsWith('.') ? paths.slice(1) : paths.slice(2);
 
     generateSuperUXComponentRecursively(componentFilePath, path.join(resultFileBasePath, ...restResultPath));
 })();
