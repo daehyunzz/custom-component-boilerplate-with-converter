@@ -7,7 +7,7 @@
 # CustomComponent.tsx 파일 요구사항
 ## 1. 컴포넌트 표현 방식
 1. 컴포넌트는 `함수 표현식`으로 표현되어야함
-2. 컴포넌트는 `React.fowardRef`로 감싸진 형태여야함
+2. 컴포넌트는 `React.forwardRef`로 감싸진 형태여야함
 3. 컴포넌트 파일 최하단에는 `export` 구문이 존재해야함
 
     (ex. const CustomComponent = React.forwardRef(...))
@@ -26,7 +26,7 @@ interface Props { // 조건 2-1, 조건 2-2
  age: number;
 }
 
-const CustomComponent = React.forardRef<any, Props>(({ ...props들 }, ref) => { // 조건 1-1, 조건 1-2
+const CustomComponent = React.forwardRef<any, Props>(({ ...props들 }, ref) => { // 조건 1-1, 조건 1-2
  ...구현 내용
 });
 
@@ -44,4 +44,4 @@ export default CustomComponent; // 조건 1-3
 - 오류 제보
 - 개선사항 제안
 
-> 와플로 연락 주시면 적극 반영하겠습니다.
+> `CM1-1 김대현B`에게 와플로 연락 주시면 적극 반영하겠습니다.
