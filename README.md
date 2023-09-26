@@ -18,6 +18,8 @@
 
 자세한 가이드는 [여기](https://github.com/daehyunzz/custom-component-boilerplate-with-converter/blob/main/SuperUXConverter/README.md)를 참고해주세요.
 
+엣지 케이스가 존재할 수 있습니다! `CM1-1 김대현`에게 와플 주시면 반영하겠습니다.
+
 
 ## 커스텀 컴포넌트 화면 확인 방법
 1. `src/index.tsx`의 render 함수의 첫 번째 인자로 렌더링하고자하는 컴포넌트를 jsx 형식으로 넘겨준다.
