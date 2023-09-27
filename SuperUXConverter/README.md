@@ -4,7 +4,7 @@
 주기적으로 업데이트 할 예정이지만 `SuperUX`의 정책 변화에 따라서 정상 동작하지 않을 수 있습니다.
 
 꼭! 아래 커스텀 컴포넌트 파일 요구사항을 참고해서 사용해주세요.
-# CustomComponent.tsx 파일 요구사항
+# CustomComponent.tsx 파일 요구사항 (파일명이 꼭 CustomComponent일 필요는 없습니다.)
 ## 1. 컴포넌트 표현 방식
 1. 컴포넌트는 `함수 표현식`으로 표현되어야함
 2. 컴포넌트는 `React.forwardRef`로 감싸진 형태여야함
