@@ -5,15 +5,15 @@ import React from 'react';
 
 interface Props {
     className: string; // Type.type이 string인 prop
-    // color: Color; // Type.type이 Color인 prop
-    // dropdownString: ['Apple', 'Banana', 'Cherry']; // Type.type이 string이며, Control.type이 Dropdown인 prop
-    // disabled: boolean[]; // Type.type이 boolean이며, Control.type이 Dropdown인 prop
-    // spinner: number; // Type.type이 number인 prop
-    // objectNotArray: { key1: string; key2: number }; // Type.type이 object이며, Type.isArray가 false인 prop
-    // objectArray: { key1: string; key2: number; key3: boolean }[]; // Type.type이 object이며, Type.isArray가 true인 prop
-    // node: React.ReactNode; // Type.type이 ReactNode인 prop
-    // objectLiteral: { key: string; key2: number };
-    // objectLiteralArray: { key: string; key2: number }[];
+    color: Color; // Type.type이 Color인 prop
+    dropdownString: ['Apple', 'Banana', 'Cherry']; // Type.type이 string이며, Control.type이 Dropdown인 prop
+    disabled: boolean[]; // Type.type이 boolean이며, Control.type이 Dropdown인 prop
+    spinner: number; // Type.type이 number인 prop
+    objectNotArray: { key1: string; key2: number }; // Type.type이 object이며, Type.isArray가 false인 prop
+    objectArray: { key1: string; key2: number; key3: boolean }[]; // Type.type이 object이며, Type.isArray가 true인 prop
+    node: React.ReactNode; // Type.type이 ReactNode인 prop
+    objectLiteral: { key: string; key2: number };
+    objectLiteralArray: { key: string; key2: number }[];
 
     // 하위 타입들은 SuperUX에서 고려되지 않는 값들이 섞여있기 때문에 정상 변환되지 않을 수 있습니다.
     // stringProp: string;

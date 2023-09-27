@@ -34,18 +34,20 @@ import { generateCustomComponentJsFile } from './generate-custom-component';
  * @param targetFilePath 커스텀 컴포넌트 파일 경로
  * @param resultFolderPath 결과 파일을 저장할 경로
  */
-export const generateSuperUXFiles = (targetFilePath: string, resultFolderPath: string) => {
+export const generateSuperUXFiles = async (targetFilePath: string, resultFolderPath: string) => {
     const name = getFileName(targetFilePath);
     const [resultFileBasePath] = resultFolderPath.split('/');
     const resultJsFilePath = path.join(resultFolderPath, `${name}.js`);
     const resultMetaDataFilePath = path.join(resultFolderPath, `${name}.json`);
 
-    const types = typeExtractor(targetFilePath);
+    const generateCustomComponentFilesCb = async types => {
+        await transpileTsComponent(targetFilePath, resultFileBasePath);
 
-    transpileTsComponent(targetFilePath, resultFileBasePath);
+        generateCustomComponentJsFile(resultJsFilePath);
+        generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
 
-    generateCustomComponentJsFile(resultJsFilePath);
-    generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
+        console.log(`${resultFolderPath} 폴더에 ${name} 파일 생성 완료`);
+    };
 
-    console.log(`${resultFolderPath} 폴더에 ${name} 파일 생성 완료`);
+    typeExtractor(targetFilePath, generateCustomComponentFilesCb);
 };

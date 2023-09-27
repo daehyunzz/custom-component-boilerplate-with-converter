@@ -31,10 +31,13 @@ const prettierCodeAsync = (filePath: string) => {
 };
 
 export const generateCustomComponentJsFile = (transpiledFilePath: string) => {
-    const transpiledJsFileContent = getFileContent(transpiledFilePath);
-    const replacedComponentJsFileContent = replaceUnnecessaryWords(transpiledJsFileContent);
-    const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
+    getFileContent(transpiledFilePath, data => {
+        const fileContent = data.toString();
+        const replacedComponentJsFileContent = replaceUnnecessaryWords(fileContent);
+        const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
 
-    generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent);
-    prettierCodeAsync(transpiledFilePath);
+        generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent, () =>
+            prettierCodeAsync(transpiledFilePath)
+        );
+    });
 };

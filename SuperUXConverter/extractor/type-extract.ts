@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import fs from 'fs';
 import { getFileContent } from './file-content';
 import parse from '../parser/parse';
 
@@ -18,16 +19,18 @@ const getLastBracketIndex = (content: string, initialIndex: number) => {
     return bracket === 0 ? index - 1 : -1;
 };
 
-export const typeExtractor = (filePath: string) => {
-    const fileContent = getFileContent(filePath);
-    const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
+export const typeExtractor = (filePath: string, generateCustomComponentFilesCb: (types: any) => void) => {
+    getFileContent(filePath, data => {
+        const fileContent = data.toString();
+        const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
 
-    const matchInfo = fileContent.match(interfaceRegex);
-    const startInterfaceIndex = matchInfo.index;
-    const startBracketIndex = startInterfaceIndex + matchInfo[0].length;
-    const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
+        const matchInfo = fileContent.match(interfaceRegex);
+        const startInterfaceIndex = matchInfo.index;
+        const startBracketIndex = startInterfaceIndex + matchInfo[0].length;
+        const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
 
-    const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
+        const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
 
-    return parse(stringifiedInterface);
+        generateCustomComponentFilesCb(parse(stringifiedInterface));
+    });
 };
