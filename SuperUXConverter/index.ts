@@ -13,13 +13,15 @@ const generateSuperUXComponentRecursively = (fileOrFolderPath, resultPath) => {
             return;
         }
 
-        const files = fs.readdirSync(fileOrFolderPath);
+        fs.readdir(fileOrFolderPath, { encoding: 'utf8' }, (err, files) => {
+            if (err) console.error(err);
 
-        files.forEach(file => {
-            const resultFilePath = path.join(resultPath, file);
-            const filePath = path.join(fileOrFolderPath, file);
+            files.forEach(file => {
+                const resultFilePath = path.join(resultPath, file);
+                const filePath = path.join(fileOrFolderPath, file);
 
-            generateSuperUXComponentRecursively(filePath, resultFilePath);
+                generateSuperUXComponentRecursively(filePath, resultFilePath);
+            });
         });
     } catch (error) {
         console.error(error);
