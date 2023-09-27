@@ -41,7 +41,7 @@ export const generateSuperUXFiles = async (targetFilePath: string, resultFolderP
     const resultMetaDataFilePath = path.join(resultFolderPath, `${name}.json`);
 
     const generateCustomComponentFilesCb = async types => {
-        await transpileTsComponent(targetFilePath, resultFileBasePath);
+        transpileTsComponent(targetFilePath, resultFileBasePath);
 
         generateCustomComponentJsFile(resultJsFilePath);
         generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
