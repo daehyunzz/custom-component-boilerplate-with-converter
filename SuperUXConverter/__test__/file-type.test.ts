@@ -11,7 +11,7 @@ import {
 } from 'extractor/file-type';
 
 describe('ContentTypeObject 생성을 테스트한다.', () => {
-    const OBJECT_KEYS = ['isArray', 'isObject', 'type'];
+    const OBJECT_KEYS = ['isArray', 'isObject', 'type'] as const;
 
     it('ReactNode의 ContentTypeObject를 생성한다.', () => {
         // Arrange
@@ -218,7 +218,7 @@ describe('ContentTypeObject 생성을 테스트한다.', () => {
 });
 
 describe('ContentObject 생성을 테스트한다.', () => {
-    const OBJECT_KEYS = ['Name', 'Type', 'Control', 'DefaultValue', 'InitialValue', 'Basic'];
+    const OBJECT_KEYS = ['Name', 'Type', 'Control', 'DefaultValue', 'InitialValue', 'Basic'] as const;
 
     it('ReactNode ContentObject를 생성한다.', () => {
         // Arrange
