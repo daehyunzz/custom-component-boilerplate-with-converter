@@ -19,9 +19,8 @@ const getLastBracketIndex = (content: string, initialIndex: number) => {
     return bracket === 0 ? index - 1 : -1;
 };
 
-export const typeExtractor = (filePath: string, generateCustomComponentFilesCb: (types: any) => void) => {
-    getFileContent(filePath, data => {
-        const fileContent = data.toString();
+export const typeExtractor = (filePath: string) => {
+    return getFileContent(filePath).then(fileContent => {
         const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
 
         const matchInfo = fileContent.match(interfaceRegex);
@@ -30,7 +29,6 @@ export const typeExtractor = (filePath: string, generateCustomComponentFilesCb: 
         const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
 
         const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
-
-        generateCustomComponentFilesCb(parse(stringifiedInterface));
+        return parse(stringifiedInterface);
     });
 };

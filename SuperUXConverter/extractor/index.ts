@@ -40,16 +40,11 @@ export const generateSuperUXFiles = async (targetFilePath: string, resultFolderP
     const resultJsFilePath = path.join(resultFolderPath, `${name}.js`);
     const resultMetaDataFilePath = path.join(resultFolderPath, `${name}.json`);
 
-    const generateCustomComponentFiles = async types => {
-        const transpileCallback = () => {
-            generateCustomComponentJsFile(resultJsFilePath);
-            generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
+    transpileTsComponent(targetFilePath, resultFileBasePath, () => {
+        generateCustomComponentJsFile(resultJsFilePath);
+    });
 
-            console.log(`${resultFolderPath} 폴더에 ${name} 파일 생성 완료`);
-        };
-
-        transpileTsComponent(targetFilePath, resultFileBasePath, transpileCallback);
-    };
-
-    typeExtractor(targetFilePath, generateCustomComponentFiles);
+    typeExtractor(targetFilePath).then(types => {
+        generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
+    });
 };

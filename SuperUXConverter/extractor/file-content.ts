@@ -1,24 +1,30 @@
 /* eslint-disable consistent-return */
 import fs from 'fs';
 
-export const getFileContent = (filePath: string, cb?: (data: Buffer) => void) => {
-    fs.readFile(filePath, (err, data) => {
-        if (err) console.error(err);
-        cb?.(data);
-    });
+export const getFileContent = (filePath: string): Promise<string> => {
+    return fs.promises.readFile(filePath, { encoding: 'utf8' });
 };
 
-export const generateFileContent = (filePath: string, fileContent: string, cb?: () => void) => {
+export const generateFileContent = async (filePath: string, fileContent: string) => {
+    // 파일 디렉토리 생성
     try {
-        if (!fs.existsSync(filePath)) {
+        await fs.promises.access(filePath); // 파일 존재 여부 확인
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            // ENOENT 오류가 발생하면 파일이 존재하지 않는 것이므로 폴더 생성
             const folderPath = filePath.split('/').slice(0, -1).join('/');
-            fs.mkdirSync(folderPath, { recursive: true });
+            await fs.promises.mkdir(folderPath, { recursive: true });
+        } else {
+            console.error('오류 발생:', error);
+            throw error; // 다른 오류는 throw
         }
-        fs.writeFile(filePath, fileContent, err => {
-            if (err) console.error(err);
-            cb?.();
-        });
+    }
+
+    // 파일 쓰기
+    try {
+        await fs.promises.writeFile(filePath, fileContent, { encoding: 'utf8' });
     } catch (error) {
         console.error('오류 발생:', error);
+        throw error;
     }
 };

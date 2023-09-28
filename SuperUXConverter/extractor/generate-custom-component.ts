@@ -21,7 +21,6 @@ const injectRef = (fileContent: string) => {
 };
 
 const prettierCodeAsync = (filePath: string) => {
-    // @ts-ignore
     exec(`npx prettier --write ${filePath}`, error => {
         if (error) {
             console.error(`prettier 명령어 실행 중 오류 발생: ${error}`);
@@ -30,14 +29,14 @@ const prettierCodeAsync = (filePath: string) => {
     });
 };
 
-export const generateCustomComponentJsFile = (transpiledFilePath: string) => {
-    getFileContent(transpiledFilePath, data => {
-        const fileContent = data.toString();
-        const replacedComponentJsFileContent = replaceUnnecessaryWords(fileContent);
-        const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
+export const generateCustomComponentJsFile = async (transpiledFilePath: string) => {
+    const fileContent = await getFileContent(transpiledFilePath);
 
-        generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent, () =>
-            prettierCodeAsync(transpiledFilePath)
-        );
+    const replacedComponentJsFileContent = replaceUnnecessaryWords(fileContent);
+    const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
+
+    generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent).then(() => {
+        prettierCodeAsync(transpiledFilePath);
+        console.log(`${transpiledFilePath} 폴더에 파일 생성 완료`);
     });
 };
