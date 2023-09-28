@@ -1,16 +1,17 @@
 /* eslint-disable import/prefer-default-export */
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
 
-export const transpileTsComponent = (targetFilePath: string, resultFilePath: string) => {
+export const transpileTsComponent = (targetFilePath: string, resultFilePath: string, cb: () => void) => {
     const command = `npx swc ./${targetFilePath} -d ${resultFilePath} --config-file .swcrc`;
 
     // @ts-ignore
-    execSync(command, (error, stdout) => {
+    exec(command, error => {
         if (error) {
             console.error(`명령어 실행 중 오류 발생: ${error}`);
             return;
         }
 
-        console.log('표준 출력:', stdout);
+        cb();
+        // console.log('표준 출력:', stdout);
     });
 };
