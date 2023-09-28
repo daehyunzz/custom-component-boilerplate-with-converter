@@ -5,7 +5,7 @@ import { generateSuperUXFiles } from './extractor';
 const [componentFilePath] = process.argv.slice(2);
 const resultFileBasePath = 'SuperUXCustomComponent';
 
-const generateSuperUXComponentRecursively = (fileOrFolderPath, resultPath) => {
+const generateSuperUXComponentRecursively = async (fileOrFolderPath, resultPath) => {
     try {
         if (fileOrFolderPath.endsWith('.tsx')) {
             const resultFilePath = resultPath.split('/').slice(0, -1).join('/');
@@ -13,15 +13,13 @@ const generateSuperUXComponentRecursively = (fileOrFolderPath, resultPath) => {
             return;
         }
 
-        fs.readdir(fileOrFolderPath, { encoding: 'utf8' }, (err, files) => {
-            if (err) console.error(err);
+        const files = await fs.promises.readdir(fileOrFolderPath, { encoding: 'utf8' });
 
-            files.forEach(file => {
-                const resultFilePath = path.join(resultPath, file);
-                const filePath = path.join(fileOrFolderPath, file);
+        files.forEach(file => {
+            const resultFilePath = path.join(resultPath, file);
+            const filePath = path.join(fileOrFolderPath, file);
 
-                generateSuperUXComponentRecursively(filePath, resultFilePath);
-            });
+            generateSuperUXComponentRecursively(filePath, resultFilePath);
         });
     } catch (error) {
         console.error(error);

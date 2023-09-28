@@ -35,8 +35,8 @@ export const generateCustomComponentJsFile = async (transpiledFilePath: string) 
     const replacedComponentJsFileContent = replaceUnnecessaryWords(fileContent);
     const refInjectedComponentJsFileContent = injectRef(replacedComponentJsFileContent);
 
-    generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent).then(() => {
-        prettierCodeAsync(transpiledFilePath);
-        console.log(`${transpiledFilePath} 폴더에 파일 생성 완료`);
-    });
+    await generateFileContent(transpiledFilePath, refInjectedComponentJsFileContent);
+    console.log(`${transpiledFilePath} 폴더에 파일 생성 완료`);
+
+    prettierCodeAsync(transpiledFilePath);
 };

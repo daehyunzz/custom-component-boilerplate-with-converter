@@ -19,16 +19,15 @@ const getLastBracketIndex = (content: string, initialIndex: number) => {
     return bracket === 0 ? index - 1 : -1;
 };
 
-export const typeExtractor = (filePath: string) => {
-    return getFileContent(filePath).then(fileContent => {
-        const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
+export const typeExtractor = async (filePath: string) => {
+    const fileContent = await getFileContent(filePath);
+    const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
 
-        const matchInfo = fileContent.match(interfaceRegex);
-        const startInterfaceIndex = matchInfo.index;
-        const startBracketIndex = startInterfaceIndex + matchInfo[0].length;
-        const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
+    const matchInfo = fileContent.match(interfaceRegex);
+    const startInterfaceIndex = matchInfo.index;
+    const startBracketIndex = startInterfaceIndex + matchInfo[0].length;
+    const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
 
-        const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
-        return parse(stringifiedInterface);
-    });
+    const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
+    return parse(stringifiedInterface);
 };
