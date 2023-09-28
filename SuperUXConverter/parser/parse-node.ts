@@ -28,7 +28,7 @@ const parseNode = (node?: ts.Node) => {
         return parseTypeElement(node);
     }
 
-    return convertType(node.kind, node);
+    return convertType(node);
 };
 
 export default parseNode;
