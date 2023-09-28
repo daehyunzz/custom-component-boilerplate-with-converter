@@ -2,20 +2,20 @@ import ts from 'typescript';
 import parseNode from './parse-node';
 
 const convertType = (node: ts.Node) => {
-    const { kind } = node;
+    const { kind: type } = node;
 
-    if (kind === ts.SyntaxKind.StringKeyword) return 'string';
-    if (kind === ts.SyntaxKind.NumberKeyword) return 'number';
-    if (kind === ts.SyntaxKind.BooleanKeyword) return 'boolean';
-    if (kind === ts.SyntaxKind.NullKeyword) return 'null';
-    if (kind === ts.SyntaxKind.UndefinedKeyword) return 'undefined';
-    if (kind === ts.SyntaxKind.SymbolKeyword) return 'symbol';
-    if (kind === ts.SyntaxKind.ObjectKeyword) return 'object';
-    if (kind === ts.SyntaxKind.TrueKeyword) return 'true';
-    if (kind === ts.SyntaxKind.FalseKeyword) return 'false';
+    if (type === ts.SyntaxKind.StringKeyword) return 'string';
+    if (type === ts.SyntaxKind.NumberKeyword) return 'number';
+    if (type === ts.SyntaxKind.BooleanKeyword) return 'boolean';
+    if (type === ts.SyntaxKind.NullKeyword) return 'null';
+    if (type === ts.SyntaxKind.UndefinedKeyword) return 'undefined';
+    if (type === ts.SyntaxKind.SymbolKeyword) return 'symbol';
+    if (type === ts.SyntaxKind.ObjectKeyword) return 'object';
+    if (type === ts.SyntaxKind.TrueKeyword) return 'true';
+    if (type === ts.SyntaxKind.FalseKeyword) return 'false';
 
     // React.ReactNode | ReactNode
-    if (kind === ts.SyntaxKind.TypeReference) {
+    if (type === ts.SyntaxKind.TypeReference) {
         // @ts-ignore
         const { typeName } = node;
 
@@ -28,43 +28,43 @@ const convertType = (node: ts.Node) => {
         }
     }
 
-    if (kind === ts.SyntaxKind.TupleType) {
+    if (type === ts.SyntaxKind.TupleType) {
         // @ts-ignore
         const { elements } = node;
         return elements.map(typeNode => convertType(typeNode));
     }
 
-    if (kind === ts.SyntaxKind.ArrayType) {
+    if (type === ts.SyntaxKind.ArrayType) {
         // @ts-ignore
         const elementType = convertType(node.elementType);
-        return { isArray: true, kind: elementType };
+        return { isArray: true, type: elementType };
     }
 
-    if (kind === ts.SyntaxKind.TypeLiteral) {
+    if (type === ts.SyntaxKind.TypeLiteral) {
         // @ts-ignore
         const { members } = node;
         return members.map(member => parseNode(member));
     }
 
-    if (kind === ts.SyntaxKind.LiteralType) {
+    if (type === ts.SyntaxKind.LiteralType) {
         // @ts-ignore
         return convertType(node.literal);
     }
 
-    if (kind === ts.SyntaxKind.UnionType) {
+    if (type === ts.SyntaxKind.UnionType) {
         // @ts-ignore
         const { types } = node;
         return types.map(typeNode => convertType(typeNode));
     }
 
-    if (kind === ts.SyntaxKind.StringLiteral) {
+    if (type === ts.SyntaxKind.StringLiteral) {
         // @ts-ignore
-        return node.text || kind;
+        return node.text || type;
     }
 
-    if (kind === ts.SyntaxKind.NumericLiteral) {
+    if (type === ts.SyntaxKind.NumericLiteral) {
         // @ts-ignore
-        return node.text || kind;
+        return node.text || type;
     }
 
     // 나머지는 string 타입으로 우선 적용. 필요하면 타입 분기
