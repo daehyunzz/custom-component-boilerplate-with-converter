@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import path from 'path';
-import { typeExtractor } from './type-extract';
+import { extractTypes } from './type-extract';
 import { getFileName } from './file-name';
 import { transpileTsComponent } from './transpile';
 import { generateCustomComponentMetaDataFile } from './generate-meta-data';
@@ -44,7 +44,7 @@ export const generateSuperUXFiles = async (targetFilePath: string, resultFolderP
         generateCustomComponentJsFile(resultJsFilePath);
     });
 
-    typeExtractor(targetFilePath).then(types => {
+    extractTypes(targetFilePath).then(types => {
         generateCustomComponentMetaDataFile(types, resultMetaDataFilePath);
     });
 };

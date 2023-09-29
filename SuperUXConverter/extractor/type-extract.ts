@@ -19,7 +19,7 @@ const getLastBracketIndex = (content: string, initialIndex: number) => {
     return bracket === 0 ? index - 1 : -1;
 };
 
-export const typeExtractor = async (filePath: string) => {
+export const extractTypes = async (filePath: string) => {
     const fileContent = await getFileContent(filePath);
     const interfaceRegex = /interface\s+[\s\S]*?\s+\{/;
 
@@ -29,5 +29,6 @@ export const typeExtractor = async (filePath: string) => {
     const lastBracketIndex = getLastBracketIndex(fileContent, startBracketIndex);
 
     const stringifiedInterface = fileContent.slice(startInterfaceIndex - 1, lastBracketIndex + 1);
+
     return parse(stringifiedInterface);
 };
