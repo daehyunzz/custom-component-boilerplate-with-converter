@@ -3,13 +3,10 @@ import parseNode from './parse-node';
 
 const parse = (sourceCode: string) => {
     const sourceFile = ts.createSourceFile('interface.ts', sourceCode, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-    const result = [];
+    const syntaxList = sourceFile.getChildAt(0);
+    const result = syntaxList.getChildAt(0);
 
-    ts.forEachChild(sourceFile, node => {
-        result.push(parseNode(node));
-    });
-
-    return result[0];
+    return parseNode(result);
 };
 
 export default parse;
