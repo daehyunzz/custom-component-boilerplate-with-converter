@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { splitPath } from './parser/utils';
 import { generateSuperUXFiles } from './extractor';
 
 const [componentFilePath] = process.argv.slice(2);
@@ -8,7 +9,7 @@ const resultFileBasePath = 'SuperUXCustomComponent';
 const generateSuperUXComponentRecursively = async (fileOrFolderPath, resultPath) => {
     try {
         if (fileOrFolderPath.endsWith('.tsx')) {
-            const resultFilePath = resultPath.split('/').slice(0, -1).join('/');
+            const resultFilePath = splitPath(resultPath).slice(0, -1).join('/');
             generateSuperUXFiles(fileOrFolderPath, resultFilePath);
             return;
         }
@@ -37,7 +38,7 @@ const generateSuperUXComponentRecursively = async (fileOrFolderPath, resultPath)
         return;
     }
 
-    const paths = componentFilePath.split('/');
+    const paths = splitPath(componentFilePath);
     const restResultPath = !paths[0].startsWith('.') ? paths.slice(1) : paths.slice(2);
 
     generateSuperUXComponentRecursively(componentFilePath, path.join(resultFileBasePath, ...restResultPath));

@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import path from 'path';
+import { splitPath } from '../parser/utils';
 import { extractTypes } from './type-extract';
 import { getFileName } from './file-name';
 import { transpileTsComponent } from './transpile';
@@ -34,9 +35,9 @@ import { generateCustomComponentJsFile } from './generate-custom-component';
  * @param targetFilePath 커스텀 컴포넌트 파일 경로
  * @param resultFolderPath 결과 파일을 저장할 경로
  */
-export const generateSuperUXFiles = async (targetFilePath: string, resultFolderPath: string) => {
+export const generateSuperUXFiles = (targetFilePath: string, resultFolderPath: string) => {
     const name = getFileName(targetFilePath);
-    const [resultFileBasePath] = resultFolderPath.split('/');
+    const [resultFileBasePath] = splitPath(resultFolderPath);
     const resultJsFilePath = path.join(resultFolderPath, `${name}.js`);
     const resultMetaDataFilePath = path.join(resultFolderPath, `${name}.json`);
 

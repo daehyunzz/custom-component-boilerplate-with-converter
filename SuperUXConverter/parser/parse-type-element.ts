@@ -1,6 +1,6 @@
 import ts from 'typescript';
 import parseNode from './parse-node';
-import getNodeName from './utils';
+import { getNodeName } from './utils';
 
 const parseTypeElement = (node: ts.TypeElement) => {
     const name = getNodeName(node);

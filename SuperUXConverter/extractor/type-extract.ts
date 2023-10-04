@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import fs from 'fs';
 import { getFileContent } from './file-content';
 import parse from '../parser/parse';
 
