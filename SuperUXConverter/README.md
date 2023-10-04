@@ -4,14 +4,14 @@
 주기적으로 업데이트 할 예정이지만 `SuperUX`의 정책 변화에 따라서 정상 동작하지 않을 수 있습니다.
 
 꼭! 아래 커스텀 컴포넌트 파일 요구사항을 참고해서 사용해주세요.
-# CustomComponent.tsx 파일 요구사항 (파일명이 꼭 CustomComponent일 필요는 없습니다.)
-## 1. 컴포넌트 표현 방식
+## CustomComponent.tsx 파일 요구사항 (파일명이 꼭 CustomComponent일 필요는 없습니다.)
+### 1. 컴포넌트 표현 방식
 1. 컴포넌트는 `함수 표현식`으로 표현되어야함
 2. 컴포넌트는 `React.forwardRef`로 감싸진 형태여야함
 3. 컴포넌트 파일 최하단에는 `export` 구문이 존재해야함
 
     (ex. const CustomComponent = React.forwardRef(...))
-## 2. 컴포넌트 Props 표현 방식
+### 2. 컴포넌트 Props 표현 방식
  1. props는 `import` 구문 아래, `CustomComponent` 표현식 위에 정의되어야함
  2. props는 `type`이 아니라 `interface`로 선언되어야함
  3. ~~props는 `prop`이 optional한 경우 `union` 타입으로 표현해줘야함~~ SuperUX에서 지원하는지 확인 필요
