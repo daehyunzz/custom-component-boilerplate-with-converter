@@ -1,3 +1,4 @@
+2023/10/04 기준 mac os에서만 동작합니다. SuperUX가 필요해졌을 때 다시 업데이트하겠습니다.
 # SuperUX Custom Component 추가를 위한 프로젝트
 
 https://github.com/daehyunzz/custom-component-boilerplate-with-converter/assets/125944821/d505895f-19aa-40da-84c9-30c1bfc8f8a4
