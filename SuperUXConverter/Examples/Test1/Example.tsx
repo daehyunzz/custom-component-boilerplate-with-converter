@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable jsdoc/require-jsdoc */
 /* eslint-disable react/no-unused-prop-types */
+import { EventObject } from 'extractor/types';
 import React from 'react';
 
 interface Props {
@@ -51,6 +52,16 @@ interface Props {
     // tupleProp: [string, number, boolean, symbol, null, undefined];
     // tupleArrayProp: [string, number, boolean, symbol, null, undefined][];
 }
+
+const EventInfos: EventObject[] = [
+    {
+        Name: 'addEndListener',
+        Type: 'ChangeEvent',
+        Inputs: [''],
+        NewValueLocation: { index: 0 },
+        Description: '',
+    },
+];
 
 const ExampleComponent: React.FC<any> = React.forwardRef<any, Props>(({ className, ...rest }, ref) => {
     return <div>example</div>;

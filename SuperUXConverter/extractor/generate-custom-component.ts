@@ -10,6 +10,11 @@ const replaceUnnecessaryWords = (fileContent: string) => {
 
 const injectRef = (fileContent: string) => {
     const matchInfo = fileContent.match(/return\s+React\.createElement\("[\s\S]*?",\s+(null|\{)/);
+
+    if (matchInfo === null || matchInfo.index === undefined) {
+        throw new Error('injectRef중 matchInfo의 값이 없습니다.');
+    }
+
     const startIndex = matchInfo.index + matchInfo[0].length;
 
     const result =

@@ -15,7 +15,9 @@
  1. props는 `import` 구문 아래, `CustomComponent` 표현식 위에 정의되어야함
  2. props는 `type`이 아니라 `interface`로 선언되어야함
  3. ~~props는 `prop`이 optional한 경우 `union` 타입으로 표현해줘야함~~ SuperUX에서 지원하는지 확인 필요
- 
+
+### 3. 이벤트 표현 방식
+ 1. event는 EventInfos라는 변수 명으로 명시한다.
 
 ```ts
 // ex) CustomComponent.tsx 파일 예시
