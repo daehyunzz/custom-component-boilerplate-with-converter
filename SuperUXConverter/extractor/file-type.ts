@@ -49,7 +49,7 @@ export const generateBooleanContentObject = ({ name, type }) => {
         Name: name,
         Type: [generateContentTypeObject(type)],
         Control: {
-            type: 'DropDown',
+            type: 'Dropdown',
             value: [true, false],
         },
         DefaultValue: false,

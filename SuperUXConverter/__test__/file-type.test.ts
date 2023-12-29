@@ -321,7 +321,7 @@ describe('ContentObject 생성을 테스트한다.', () => {
                 },
             ],
             Control: {
-                type: 'DropDown',
+                type: 'Dropdown',
                 value: [true, false],
             },
             DefaultValue: false,
