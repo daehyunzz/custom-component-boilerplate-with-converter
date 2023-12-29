@@ -9,6 +9,7 @@
         "paths": {
             "*": ["*"]
         },
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "strict": true
     }
 }
