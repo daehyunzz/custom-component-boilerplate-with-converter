@@ -17,7 +17,7 @@
  3. ~~props는 `prop`이 optional한 경우 `union` 타입으로 표현해줘야함~~ SuperUX에서 지원하는지 확인 필요
 
 ### 3. 이벤트 표현 방식
- 1. event는 EventInfos라는 변수 명으로 명시한다.
+ 1. event는 EventInfos라는 변수 명으로 명시되어야 함. 컴포넌트 내부에서 사용될 필요는 없음.
 
 ```ts
 // ex) CustomComponent.tsx 파일 예시
