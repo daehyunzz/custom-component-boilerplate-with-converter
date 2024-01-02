@@ -28,6 +28,15 @@ interface Props { // 조건 2-1, 조건 2-2
  age: number;
 }
 
+const EventInfos: EventObject[] = [
+    {
+        Name: 'onClick',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 텍스트 색상이 바뀐다.',
+    },
+];
+
 const CustomComponent = React.forwardRef<any, Props>(({ ...props들 }, ref) => { // 조건 1-1, 조건 1-2
  ...구현 내용
 });
