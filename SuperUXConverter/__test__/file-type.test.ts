@@ -440,22 +440,14 @@ describe('ContentObject 생성을 테스트한다.', () => {
             DefaultValue: [
                 {
                     key1: '',
-                },
-                {
                     key2: 0,
-                },
-                {
                     key3: true,
                 },
             ],
             InitialValue: [
                 {
                     key1: '',
-                },
-                {
                     key2: 0,
-                },
-                {
                     key3: true,
                 },
             ],

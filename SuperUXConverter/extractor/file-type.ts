@@ -94,9 +94,15 @@ export const generateObjectContentObject = ({ name, type }) => {
 
     const DefaultValue = (() => {
         if (isArray && isObject) {
-            const result = type.type.reduce((acc, cur) => {
-                return [...acc, 오브젝트_배열_순회하면서_초기값_설정하기([cur])];
-            }, []);
+            const result = type.type.reduce(
+                (acc, cur) => {
+                    const 필드 = 오브젝트_배열_순회하면서_초기값_설정하기([cur]);
+                    const [[key, value]] = Object.entries(필드) as [string, unknown][];
+                    acc[0][key] = value;
+                    return acc;
+                },
+                [{}]
+            );
             return result;
         }
         if (isArray) return [];
