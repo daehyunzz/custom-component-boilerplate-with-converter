@@ -46,7 +46,6 @@ export const generateSuperUXFiles = (targetFilePath: string, resultFolderPath: s
     });
 
     extractMetaInfos(targetFilePath).then(({ typeInfos, eventInfos }) => {
-        console.log({ typeInfos, eventInfos });
         generateCustomComponentMetaDataFile(typeInfos, eventInfos, resultMetaDataFilePath);
     });
 };
