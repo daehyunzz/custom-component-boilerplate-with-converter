@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable array-callback-return */
 /* eslint-disable import/prefer-default-export */
 import { exec } from 'child_process';
 import path from 'path';
@@ -92,6 +94,32 @@ const getLibraryVersion = async (
     return dependencies?.[libraryName] ?? devDependencies?.[libraryName];
 };
 
+const getPackageLockJsonLibrayNames = (packageLockJson: {
+    packages: { [key: string]: { dependencies?: object; devDependencies?: object } };
+}) => {
+    const { dependencies, devDependencies } = packageLockJson.packages[''];
+    let libraryNames: string[] = [];
+
+    if (dependencies) {
+        libraryNames = [...Object.keys(dependencies)];
+    }
+
+    if (devDependencies) {
+        libraryNames = [...libraryNames, ...Object.keys(devDependencies)];
+    }
+
+    return libraryNames;
+};
+
+const formatComponentName = componentName => {
+    return componentName
+        .replace(/\^/g, '')
+        .replace(/-/g, '_')
+        .replace(/@/g, 'at_')
+        .replace(/\//g, '_')
+        .replace(/\./g, '_');
+};
+
 const replaceLibraryComponentNames = async (fileContent: string, packageLockJsonPath: string) => {
     const importInfos = getImportInfos(fileContent);
     const libraryNames = [...new Set(Object.values(importInfos.map(({ libraryName }) => libraryName)))];
@@ -99,25 +127,45 @@ const replaceLibraryComponentNames = async (fileContent: string, packageLockJson
     const packageLockJsonContent = await getFileContent(packageLockJsonPath);
     const packageLockJson = JSON.parse(packageLockJsonContent);
 
-    const transformedLibraryInfo = await libraryNames.reduce(async (acc, libraryName) => {
+    const packageLockJsonLibraryNames = getPackageLockJsonLibrayNames(packageLockJson);
+
+    packageLockJsonLibraryNames.forEach(packageLockJsonLibraryName => {
+        importInfos.forEach((importInfo, index) => {
+            if (importInfo.libraryName.includes(packageLockJsonLibraryName)) {
+                importInfos[index].libraryName = packageLockJsonLibraryName;
+            }
+        });
+        libraryNames.forEach((libraryName, index) => {
+            if (libraryName.includes(packageLockJsonLibraryName)) {
+                libraryNames[index] = packageLockJsonLibraryName;
+            }
+        });
+    });
+
+    const versionInfos = await libraryNames.reduce(async (acc, libraryName) => {
         const awaitedAcc = await acc;
         const version = await getLibraryVersion(libraryName, packageLockJson);
-        const libraryNamesWithVersion = `${libraryName}_${version}`
-            .replace(/\^/g, '')
-            .replace(/-/g, '_')
-            .replace(/@/g, 'at_')
-            .replace(/\//g, '_')
-            .replace(/\./g, '_');
 
-        awaitedAcc[libraryName] = libraryNamesWithVersion;
+        awaitedAcc[libraryName] = version;
         return awaitedAcc;
     }, Promise.resolve({}) as Promise<{ [key: string]: string }>);
 
     return importInfos.reduce((acc, { importName: { name, isDefault }, libraryName }) => {
+        const regex = new RegExp(`React.createElement\\(${name}`, 'g');
+        const version = versionInfos[libraryName];
+
         if (isDefault) {
-            return acc.replaceAll(name, `${libraryName}.default`);
+            acc = acc.replaceAll(
+                regex,
+                `React.createElement(${formatComponentName(`${libraryName}_${name}_${version}`)}.default`
+            );
+            return acc;
         }
-        return acc.replaceAll(name, `${transformedLibraryInfo[libraryName]}.${name}`);
+        acc = acc.replaceAll(
+            regex,
+            `React.createElement(${formatComponentName(`${libraryName}_${version}`)}.${formatComponentName(name)}`
+        );
+        return acc;
     }, fileContent);
 };
 
