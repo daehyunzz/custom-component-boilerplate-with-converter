@@ -42,7 +42,7 @@ export const extractEventInfos = async (fileContent: string) => {
     const matchInfo = fileContent.match(eventInfosRegex);
 
     if (matchInfo === null || matchInfo.index === undefined) {
-        throw new Error('해당 파일에 명시된 이벤트 타입 정보가 없습니다.');
+        return [];
     }
 
     const startObjectIndex = matchInfo.index;

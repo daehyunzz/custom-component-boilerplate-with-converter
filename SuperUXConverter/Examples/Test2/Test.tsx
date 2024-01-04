@@ -39,3 +39,5 @@ const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age
         </div>
     );
 });
+
+export default Test;
