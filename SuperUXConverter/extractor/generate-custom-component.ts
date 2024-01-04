@@ -112,12 +112,7 @@ const getPackageLockJsonLibrayNames = (packageLockJson: {
 };
 
 const formatComponentName = componentName => {
-    return componentName
-        .replace(/\^/g, '')
-        .replace(/-/g, '_')
-        .replace(/@/g, 'at_')
-        .replace(/\//g, '_')
-        .replace(/\./g, '_');
+    return componentName.replace(/\^/g, '').replace(/[-/.]/g, '_').replace(/@/g, 'at_');
 };
 
 const replaceLibraryComponentNames = async (fileContent: string, packageLockJsonPath: string) => {
