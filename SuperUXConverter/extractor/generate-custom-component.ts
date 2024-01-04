@@ -88,10 +88,10 @@ const getImportInfos = (fileContent: string) => {
 /** package-lock.json에서 라이브러리 정보(이름, 버전)를 가져온다. */
 const getLibraryVersion = async (
     libraryName: string,
-    packageLockJson: { packages: { [key: string]: { dependencies?: object; devDependencies?: object } } }
+    packageLockJson: { packages: { [key: string]: { version: string } } }
 ) => {
-    const { dependencies, devDependencies } = packageLockJson.packages[''];
-    return dependencies?.[libraryName] ?? devDependencies?.[libraryName];
+    const { version } = packageLockJson.packages[`node_modules/${libraryName}`];
+    return version;
 };
 
 const getPackageLockJsonLibrayNames = (packageLockJson: {
