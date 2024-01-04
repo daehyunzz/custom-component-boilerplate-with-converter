@@ -85,7 +85,7 @@ const getImportInfos = (fileContent: string) => {
         .filter(e => e.libraryName !== 'react');
 };
 
-/** package.json에서 라이브러리 정보(이름, 버전)를 가져온다. */
+/** package-lock.json에서 라이브러리 정보(이름, 버전)를 가져온다. */
 const getLibraryVersion = async (
     libraryName: string,
     packageLockJson: { packages: { [key: string]: { dependencies?: object; devDependencies?: object } } }
