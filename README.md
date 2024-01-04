@@ -1,13 +1,19 @@
-2023/10/04 기준 mac os에서만 동작합니다. SuperUX가 필요해졌을 때 다시 업데이트하겠습니다.
+~~2023/10/04 기준 mac os에서만 동작합니다. SuperUX가 필요해졌을 때 다시 업데이트하겠습니다.~~    
+2024/01/04 기준 mac/window os에서 모두 동작합니다.
 # SuperUX Custom Component 추가를 위한 프로젝트
 
 https://github.com/daehyunzz/custom-component-boilerplate-with-converter/assets/125944821/d505895f-19aa-40da-84c9-30c1bfc8f8a4
 
-
+## 지원하는 기능
+- tsx파일로부터 meta data, js 파일 자동 생성 기능 지원
+- 라이브러리 import 변환 기능 지원
+- 다중 파일 병렬 생성 기능 지원
 
 ## 커스텀 컴포넌트 변환기 사용 방법
-본 모듈은 2023/09/21 기준, [SuperUX CustomComponent 가이드 문서](https://rightful-samba-b59.notion.site/CustomComponent-6ebc1d26b05d474d8fda2fe9b6b620d4)를 기반으로 구현했습니다.
-2024/01/02 업데이트 되었습니다. 윈도우는 지원되지 않습니다.
+본 모듈은 2023/09/21 기준, [SuperUX CustomComponent 가이드 문서](https://rightful-samba-b59.notion.site/CustomComponent-6ebc1d26b05d474d8fda2fe9b6b620d4)를 기반으로 구현했습니다.    
+2024/01/02 업데이트 되었습니다.    
+2024/01/04 업데이트 되었습니다.    
+- window os 지원
 
 ```bash
 > npm install
