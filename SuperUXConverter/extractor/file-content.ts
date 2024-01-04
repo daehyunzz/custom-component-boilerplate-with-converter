@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { splitPath } from '../parser/utils';
+import { joinPath, splitPath } from '../parser/utils';
 
 export const getFileContent = (filePath: string): Promise<string> => {
     return fs.promises.readFile(filePath, { encoding: 'utf8' });
@@ -10,9 +10,10 @@ export const generateFileContent = async (filePath: string, fileContent: string)
     try {
         await fs.promises.access(filePath); // 파일 존재 여부 확인
     } catch (error) {
+        // @ts-ignore
         if (error.code === 'ENOENT') {
             // ENOENT 오류가 발생하면 파일이 존재하지 않는 것이므로 폴더 생성
-            const folderPath = splitPath(filePath).slice(0, -1).join('/');
+            const folderPath = joinPath(splitPath(filePath).slice(0, -1));
             await fs.promises.mkdir(folderPath, { recursive: true });
         } else {
             console.error('오류 발생:', error);
