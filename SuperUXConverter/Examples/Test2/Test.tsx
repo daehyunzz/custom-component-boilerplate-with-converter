@@ -1,5 +1,7 @@
 /* eslint-disable jsdoc/require-jsdoc */
 import React from 'react';
+import { Button } from '@mui/material';
+
 import type { EventObject } from '../../extractor/types';
 
 interface Props {
@@ -25,6 +27,7 @@ const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age
         <div>
             <span style={{ color: `${active ? 'red' : 'black'}` }}>{name}</span>
             <span>{age}</span>
+            <Button>click</Button>
             <button
                 type="button"
                 onClick={e => {
@@ -39,3 +42,5 @@ const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age
         </div>
     );
 });
+
+export default Test;
