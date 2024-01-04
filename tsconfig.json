@@ -38,5 +38,5 @@
         // DOM API 등의 type 정의들 사용.
         "lib": ["DOM", "ES2019"]
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "SuperUXCustomComponent", "SuperUXconverter"]
 }

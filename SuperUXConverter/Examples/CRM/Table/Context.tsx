@@ -1,0 +1,1 @@
+const TableContext = React.createContext({});

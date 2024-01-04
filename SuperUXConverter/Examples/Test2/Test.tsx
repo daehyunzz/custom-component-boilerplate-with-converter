@@ -1,12 +1,13 @@
 /* eslint-disable jsdoc/require-jsdoc */
 import React from 'react';
 import type { EventObject } from '../../extractor/types';
+import { Button as at_asdf_5_2_3 } from '@mui/material';
 
 interface Props {
-    className: string;
     name: string;
     age: number;
     isOpen: boolean;
+    테스트: React.ReactNode;
 }
 
 const EventInfos: EventObject[] = [
@@ -18,24 +19,13 @@ const EventInfos: EventObject[] = [
     },
 ];
 
-const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age, isOpen }, ref) => {
+const Test: React.FC<any> = React.forwardRef<any, Props>(({ 테스트, name, age, isOpen }, ref) => {
     const [active, setActive] = React.useState(false);
-    console.log({ className });
     return (
         <div>
-            <span style={{ color: `${active ? 'red' : 'black'}` }}>{name}</span>
-            <span>{age}</span>
-            <button
-                type="button"
-                onClick={e => {
-                    // console.log(e);
-                    setActive(prev => !prev);
-                }}
-            >
-                click
-            </button>
-
-            {isOpen && <div> hihihi im opened </div>}
+            <at_asdf_5_2_3>asdf</at_asdf_5_2_3>
         </div>
     );
 });
+
+export default Test;

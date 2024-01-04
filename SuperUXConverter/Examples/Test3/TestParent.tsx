@@ -1,0 +1,45 @@
+/* eslint-disable jsdoc/require-jsdoc */
+import React from 'react';
+import type { EventObject } from '../../extractor/types';
+
+interface Props {
+    name: string;
+}
+
+const EventInfos: EventObject[] = [
+    {
+        Name: 'onClick',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 텍스트 색상이 바뀐다.',
+    },
+];
+
+const TestParent: React.FC<any> = React.forwardRef<any, any>(({ children, name }, ref) => {
+    const [active, setActive] = React.useState(false);
+    return (
+        <div>
+            <span style={{ color: `${active ? 'red' : 'black'}` }}>
+                {name}
+                {children ? 'true' : 'false'}
+            </span>
+            <button
+                type="button"
+                onClick={e => {
+                    console.log(e.clientX);
+                    console.log({ children });
+                    setActive(prev => !prev);
+                }}
+            >
+                click
+            </button>
+            {children}
+            {/* {React.Children.map(children, child => {
+                if (React.isValidElement(child)) {
+                    return React.cloneElement(child, { text: 'override 됨' });
+                }
+                return null;
+            })} */}
+        </div>
+    );
+});

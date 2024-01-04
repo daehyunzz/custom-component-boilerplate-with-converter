@@ -1,10 +1,12 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
 import { render } from 'react-dom';
 import { configure } from 'mobx';
 
-import CustomComponent from './CustomComponent';
+import 청구서 from 'Detail/Containers/청구서/page';
+import 주문현황 from 'Detail/Containers/주문현황/page';
 
 // office-core 설정.
 // setCoreMode(getProgramMode() === 'Production' ? 'Production' : 'Development');
@@ -32,4 +34,9 @@ root.addEventListener('wheel', (e: MouseEvent) => {
 
 (window as any).React = React;
 
-render(<CustomComponent />, root);
+render(
+    // <청구서.단건상품청구서상세 />
+    // <주문현황.단건상품주문상세 />,
+    <주문현황.구독상품주문상세 />,
+    root
+);
