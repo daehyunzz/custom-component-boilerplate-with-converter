@@ -9,14 +9,16 @@ interface Props {
     /** 청구서 정보 */
     옵션1제목: string;
 
+    옵션1_값들: {
+        옵션1_1_값: string;
+        옵션1_3_값: string;
+    };
     옵션1_1_키: string;
-    옵션1_1_값: string;
 
     옵션1_2_키: string;
     옵션1_2_값: React.ReactNode;
 
     옵션1_3_키: string;
-    옵션1_3_값: string;
 
     /** 이전 청구서 정보 */
     옵션2제목: string;
@@ -40,6 +42,15 @@ interface Props {
     옵션2_6_값: React.ReactNode;
 }
 
+// const EventInfos: EventObject[] = [
+//     {
+//         Name: 'onClick',
+//         Type: 'MouseEvent',
+//         Inputs: ['e'],
+//         Description: '클릭 시 페이지 이동',
+//     },
+// ];
+
 const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
     (
         {
@@ -47,11 +58,10 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
             과금유형,
             옵션1제목,
             옵션1_1_키,
-            옵션1_1_값,
+            옵션1_값들,
             옵션1_2_키,
             옵션1_2_값,
             옵션1_3_키,
-            옵션1_3_값,
             옵션2제목,
             옵션2_1_키,
             옵션2_1_값,
@@ -65,6 +75,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
             옵션2_5_값,
             옵션2_6_키,
             옵션2_6_값,
+            onClick,
         },
         ref
     ) => {
@@ -243,7 +254,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                                             alignItems: 'center',
                                         }}
                                     >
-                                        {옵션1_1_값}
+                                        {옵션1_값들.옵션1_1_값}
                                     </p>
                                 </div>
                                 <div
@@ -329,7 +340,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                                             alignItems: 'center',
                                         }}
                                     >
-                                        {옵션1_3_값}
+                                        {옵션1_값들.옵션1_3_값}
                                     </p>
                                 </div>
                             </div>
@@ -624,9 +635,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                     </div>
 
                     <button
-                        onClick={() => {
-                            console.log('click');
-                        }}
+                        onClick={e => onClick(e)}
                         type="button"
                         style={{
                             color: '#374151',
