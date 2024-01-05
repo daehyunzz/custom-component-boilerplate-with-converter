@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** 상품정보를 어떻게 할지 결정해야한다. */
 // eslint-disable-next-line jsdoc/require-jsdoc
 interface Props {
     제목: string;

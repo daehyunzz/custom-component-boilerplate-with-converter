@@ -17,9 +17,7 @@
     },
     "dependencies": {
         "@babel/preset-typescript": "^7.23.0",
-        "@emotion/react": "^11.11.3",
-        "@emotion/styled": "^11.11.0",
-        "@mui/material": "^5.15.2",
+        "@mui/material": "5.15.2",
         "@svgr/webpack": "^5.5.0",
         "autobind-decorator": "^2.4.0",
         "axios": "^0.21.1",

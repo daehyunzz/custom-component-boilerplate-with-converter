@@ -1,5 +1,6 @@
 /* eslint-disable jsdoc/require-jsdoc */
 // PaymentInformation
+import { EventObject } from 'extractor/types';
 import React from 'react';
 
 interface Props {
