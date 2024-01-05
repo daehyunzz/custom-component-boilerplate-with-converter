@@ -64,10 +64,10 @@ const parseImportNameBlock = (importNameBlock: string) => {
 
         if (result.includes(' as ')) {
             const module = result.replace(/[\w*]{1,}\sas\s(.*)/g, '$1');
-            return [...acc, { name: module, isDefault: true }];
+            return [...acc, { name: module, isDefault: false }];
         }
 
-        return [...acc, { name: result, isDefault: true }];
+        return [...acc, { name: result, isDefault: false }];
     }, [] as { name: string; isDefault: boolean }[]);
 };
 
