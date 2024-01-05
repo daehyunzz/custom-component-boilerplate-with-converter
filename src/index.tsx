@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { configure } from 'mobx';
 
 import CustomComponent from './CustomComponent';
+import Test from './Test';
 
 // office-core 설정.
 // setCoreMode(getProgramMode() === 'Production' ? 'Production' : 'Development');
@@ -32,4 +33,4 @@ root.addEventListener('wheel', (e: MouseEvent) => {
 
 (window as any).React = React;
 
-render(<CustomComponent />, root);
+render(<Test />, root);

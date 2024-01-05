@@ -1,9 +1,7 @@
 /* eslint-disable jsdoc/require-jsdoc */
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
-
-import type { EventObject } from '../../extractor/types';
 
 interface Props {
     className: string;
@@ -12,15 +10,6 @@ interface Props {
     isOpen: boolean;
 }
 
-const EventInfos: EventObject[] = [
-    {
-        Name: 'onClick',
-        Type: 'MouseEvent',
-        Inputs: ['e'],
-        Description: '클릭 시 텍스트 색상이 바뀐다.',
-    },
-];
-
 const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age, isOpen }, ref) => {
     const [active, setActive] = React.useState(false);
     console.log({ className });
@@ -28,6 +17,7 @@ const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age
         <div>
             <span style={{ color: `${active ? 'red' : 'black'}` }}>{name}</span>
             <span>{age}</span>
+            <Box>hi</Box>
             <Button>click</Button>
             <button
                 type="button"
