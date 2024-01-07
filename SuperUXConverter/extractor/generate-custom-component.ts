@@ -115,6 +115,13 @@ const formatComponentName = componentName => {
     return componentName.replace(/\^/g, '').replace(/[-/.]/g, '_').replace(/@/g, 'at_');
 };
 
+const formatLibraryEdgeCase = libraryName => {
+    if (libraryName.includes('@mui/icons-material')) {
+        return 'MUI_ICON';
+    }
+    return libraryName;
+};
+
 const replaceLibraryComponentNames = async (fileContent: string, packageLockJsonPath: string) => {
     const importInfos = getImportInfos(fileContent);
     const libraryNames = [...new Set(Object.values(importInfos.map(({ libraryName }) => libraryName)))];
@@ -145,23 +152,33 @@ const replaceLibraryComponentNames = async (fileContent: string, packageLockJson
         return awaitedAcc;
     }, Promise.resolve({}) as Promise<{ [key: string]: string }>);
 
-    return importInfos.reduce((acc, { importName: { name, isDefault }, libraryName }) => {
-        const regex = new RegExp(`React.createElement\\(${name}`, 'g');
-        const version = versionInfos[libraryName];
+    return importInfos
+        .map(({ importName, libraryName }) => {
+            return {
+                importName,
+                libraryName: formatLibraryEdgeCase(libraryName),
+            };
+        })
+        .reduce((acc, { importName: { name, isDefault }, libraryName }) => {
+            const regex = new RegExp(`React.createElement\\(${name}`, 'g');
+            const version = versionInfos[libraryName];
 
-        if (isDefault) {
-            acc = acc.replaceAll(
-                regex,
-                `React.createElement(${formatComponentName(`${libraryName}_${name}_${version}`)}.default`
-            );
+            if (isDefault) {
+                acc = acc.replaceAll(
+                    regex,
+                    `React.createElement(${formatComponentName(`${libraryName}_${name}_${version}`)}.default`
+                );
+            } else {
+                acc = acc.replaceAll(
+                    regex,
+                    `React.createElement(${formatComponentName(
+                        `${libraryName}${version === undefined ? '' : `_${version}`}`
+                    )}.${formatComponentName(name)}`
+                );
+            }
+
             return acc;
-        }
-        acc = acc.replaceAll(
-            regex,
-            `React.createElement(${formatComponentName(`${libraryName}_${version}`)}.${formatComponentName(name)}`
-        );
-        return acc;
-    }, fileContent);
+        }, fileContent);
 };
 
 export const generateCustomComponentJsFile = async (transpiledFilePath: string) => {
