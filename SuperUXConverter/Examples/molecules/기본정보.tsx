@@ -1,14 +1,12 @@
-/* eslint-disable jsdoc/require-jsdoc */
-
 import React from 'react';
 
-// CustomerInformation
+// eslint-disable-next-line jsdoc/require-jsdoc
 interface Props {
     제목: string;
-    고객정보: { key: string; value: string }[];
+    기본정보: { key: string; value: string }[];
 }
 
-const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제목, 고객정보 }, ref) => {
+const 기본정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제목, 기본정보 }, ref) => {
     return (
         <div
             style={{
@@ -96,7 +94,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     fontWeight: 600,
                                 }}
                             >
-                                {고객정보[0].key}
+                                {기본정보[0].key}
                             </p>
                             <p
                                 style={{
@@ -108,44 +106,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     alignItems: 'center',
                                 }}
                             >
-                                {고객정보[0].value}
-                            </p>
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                height: '56px',
-                                boxSizing: 'border-box',
-                                width: '100%',
-                            }}
-                        >
-                            <p
-                                style={{
-                                    display: 'flex',
-                                    margin: 0,
-                                    padding: '16px',
-                                    background: '#F9FAFB',
-                                    boxSizing: 'border-box',
-                                    width: '302px',
-                                    lineHeight: '26px',
-
-                                    fontStyle: 'normal',
-                                    fontWeight: 600,
-                                }}
-                            >
-                                {고객정보[1].key}
-                            </p>
-                            <p
-                                style={{
-                                    display: 'flex',
-                                    margin: 0,
-                                    flex: 1,
-                                    padding: '16px',
-                                    lineHeight: '26px',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                {고객정보[1].value}
+                                {기본정보[0].value}
                             </p>
                         </div>
                     </div>
@@ -182,7 +143,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     fontWeight: 600,
                                 }}
                             >
-                                {고객정보[2].key}
+                                {기본정보[1].key}
                             </p>
                             <p
                                 style={{
@@ -194,7 +155,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     alignItems: 'center',
                                 }}
                             >
-                                {고객정보[2].value}
+                                {기본정보[1].value}
                             </p>
                         </div>
                         <div
@@ -219,7 +180,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     fontWeight: 600,
                                 }}
                             >
-                                {고객정보[3].key}
+                                {기본정보[2].key}
                             </p>
                             <p
                                 style={{
@@ -231,7 +192,7 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
                                     alignItems: 'center',
                                 }}
                             >
-                                {고객정보[3].value}
+                                {기본정보[2].value}
                             </p>
                         </div>
                     </div>
@@ -241,4 +202,4 @@ const 고객정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제
     );
 });
 
-export default 고객정보Container;
+export default 기본정보Container;

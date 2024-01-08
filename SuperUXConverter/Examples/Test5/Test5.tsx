@@ -23,14 +23,14 @@ interface Props {
     옵션2_6값: React.ReactNode;
 }
 
-// const EventInfos: EventObject[] = [
-//     {
-//         Name: 'onClick',
-//         Type: 'MouseEvent',
-//         Inputs: ['e'],
-//         Description: '클릭 시 페이지 이동',
-//     },
-// ];
+const EventInfos: EventObject[] = [
+    {
+        Name: 'onClick',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 페이지 이동',
+    },
+];
 
 const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
     (
