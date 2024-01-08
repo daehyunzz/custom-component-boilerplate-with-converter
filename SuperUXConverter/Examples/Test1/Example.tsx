@@ -15,6 +15,7 @@ interface Props {
     // node: React.ReactNode; // Type.type이 ReactNode인 prop
     // objectLiteral: { key: string; key2: number };
     // objectLiteralArray: { key: string; key2: number }[];
+    // objectWithLiteralObjectArray: { 소속: string; 정보: { 이름: string; 나이: number }[] }[];
 
     // 하위 타입들은 SuperUX에서 고려되지 않는 값들이 섞여있기 때문에 정상 변환되지 않을 수 있습니다.
     // stringProp: string;

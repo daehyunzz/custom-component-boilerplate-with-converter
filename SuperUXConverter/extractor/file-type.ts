@@ -124,7 +124,7 @@ export const generateObjectContentObject = ({ name, type }) => {
 
 const 오브젝트_배열_순회하면서_초기값_설정하기 = typeInfos => {
     if (typeInfos.isArray) {
-        return [...오브젝트_배열_순회하면서_초기값_설정하기([typeInfos.type])];
+        return 오브젝트_배열_순회하면서_초기값_설정하기(typeInfos.type);
     }
 
     return typeInfos.reduce((acc, { name: key, type: value }) => {
