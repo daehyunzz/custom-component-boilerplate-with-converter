@@ -11,6 +11,7 @@ it('interface property를 추출한다.', () => {
         objectNotArray: { key1: string; key2: number }; // Type.type이 object이며, Type.isArray가 false인 prop
         objectArray: { key1: string; key2: number; key3: boolean }[]; // Type.type이 object이며, Type.isArray가 true인 prop
         node: React.ReactNode; // Type.type이 ReactNode인 prop
+        objectWithLiteralObjectArray: { 소속: string; 정보: { 이름: string; 나이: number }[] }[];
     }`;
 
     // Act
@@ -42,5 +43,24 @@ it('interface property를 추출한다.', () => {
             },
         },
         { name: 'node', type: 'ReactNode' },
+        {
+            name: 'objectWithLiteralObjectArray',
+            type: {
+                isArray: true,
+                type: [
+                    { name: '소속', type: 'string' },
+                    {
+                        name: '정보',
+                        type: {
+                            isArray: true,
+                            type: [
+                                { name: '이름', type: 'string' },
+                                { name: '나이', type: 'number' },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
     ]);
 });
