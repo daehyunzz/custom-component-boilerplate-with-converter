@@ -17,7 +17,10 @@ interface Props {
     제목: string;
     상품들: {
         상품기본정보: { key: string; value: string }[];
-        추가상품: { key: string; value: string }[];
+        옵션들: {
+            추가상품?: { key: string; value: string }[];
+            요금제?: { key: string; value: string }[];
+        };
         청구금액: string;
     }[];
     총청구금액: string;
@@ -26,7 +29,7 @@ interface Props {
 const SellingProductInformation: React.FC<any> = React.forwardRef<any, Props>(({ 상품들, 총청구금액, 제목 }, ref) => {
     return (
         <Container title={제목} gap="32px">
-            {상품들.map(({ 상품기본정보, 추가상품, 청구금액 }, index) => {
+            {상품들.map(({ 상품기본정보, 옵션들: { 추가상품, 요금제 }, 청구금액 }, index) => {
                 return (
                     <>
                         <span
@@ -63,6 +66,22 @@ const SellingProductInformation: React.FC<any> = React.forwardRef<any, Props>(({
                                     table={
                                         <DetailTableRowContainer>
                                             {추가상품.map(({ key, value }) => {
+                                                return (
+                                                    <DetailTableRow>
+                                                        <DetailTableRowCell title={key} value={value} />
+                                                    </DetailTableRow>
+                                                );
+                                            })}
+                                        </DetailTableRowContainer>
+                                    }
+                                />
+                            )}
+                            {요금제 && (
+                                <OptionBox
+                                    제목="요금제"
+                                    table={
+                                        <DetailTableRowContainer>
+                                            {요금제.map(({ key, value }) => {
                                                 return (
                                                     <DetailTableRow>
                                                         <DetailTableRowCell title={key} value={value} />
