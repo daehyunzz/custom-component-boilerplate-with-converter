@@ -123,7 +123,19 @@ export const generateObjectContentObject = ({ name, type }) => {
 };
 
 const 오브젝트_배열_순회하면서_초기값_설정하기 = typeInfos => {
+    // 배열이라면
     if (typeInfos.isArray) {
+        // 배열이면서 오브젝트가 아니면 primitive 배열
+        if (typeof typeInfos.type !== 'object') {
+            if (typeInfos.type === 'string') return [''];
+            if (typeInfos.type === 'number') return [0];
+            if (typeInfos.type === 'boolean') return [true];
+            return [];
+        }
+        // 오브젝트라면
+        if (Array.isArray(typeInfos.type)) {
+            return [오브젝트_배열_순회하면서_초기값_설정하기(typeInfos.type)];
+        }
         return 오브젝트_배열_순회하면서_초기값_설정하기(typeInfos.type);
     }
 
