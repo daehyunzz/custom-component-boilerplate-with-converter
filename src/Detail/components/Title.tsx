@@ -5,9 +5,10 @@ import React from 'react';
 
 interface Props {
     title: string;
+    color: string;
 }
 
-const Title: React.FC<any> = React.forwardRef<any, Props>(({ title }, ref) => {
+const Title: React.FC<any> = React.forwardRef<any, Props>(({ title, color = '#111928' }, ref) => {
     return (
         <div
             style={{

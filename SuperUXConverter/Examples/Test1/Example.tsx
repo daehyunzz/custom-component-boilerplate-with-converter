@@ -52,6 +52,7 @@ interface Props {
 
     // tupleProp: [string, number, boolean, symbol, null, undefined];
     // tupleArrayProp: [string, number, boolean, symbol, null, undefined][];
+    test: { info: { key: string; value: string }[] }[];
 }
 
 const EventInfos: EventObject[] = [

@@ -13,15 +13,14 @@ interface Props {
  * 결제 실패
  */
 const Badge: React.FC<any> = React.forwardRef<any, Props>(({ label }, ref) => {
-    const [text] = label;
     const { backgroundColor, color } = (() => {
-        if (text === '결제 대기') {
+        if (label === '결제 대기') {
             return { backgroundColor: '#FFF9DF', color: '#DA7D2E' };
         }
-        if (text === '결제 완료') {
+        if (label === '결제 완료') {
             return { backgroundColor: '#DEF7EC', color: '#057A55' };
         }
-        if (text === '전송 대기') {
+        if (label === '전송 대기') {
             return { backgroundColor: '#FFF2E8', color: '#FA541C' };
         }
 
@@ -50,7 +49,7 @@ const Badge: React.FC<any> = React.forwardRef<any, Props>(({ label }, ref) => {
                 }}
             />
             <span style={{ color, fontSize: '12px', fontFamily: 'normal', fontWeight: 600, lineHeight: '18px' }}>
-                {text}
+                {label}
             </span>
         </div>
     );

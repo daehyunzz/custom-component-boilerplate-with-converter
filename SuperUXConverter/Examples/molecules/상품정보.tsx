@@ -6,10 +6,10 @@ import React from 'react';
 interface Props {
     제목: string;
     상품상세정보: { key: string; value: string }[];
-    추가상품?: { key: string; value: string }[];
+    옵션?: { key: string; value: string }[];
 }
 
-const 상품상세정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제목, 상품상세정보, 추가상품 }, ref) => {
+const 상품상세정보Container: React.FC<any> = React.forwardRef<any, Props>(({ 제목, 상품상세정보, 옵션 }, ref) => {
     return (
         <div
             style={{
@@ -110,8 +110,8 @@ const 상품상세정보Container: React.FC<any> = React.forwardRef<any, Props>(
                     })}
                 </div>
 
-                {/** 추가상품 */}
-                {추가상품 && (
+                {/** 옵션 */}
+                {옵션 && (
                     <div>
                         <h2
                             style={{
@@ -138,7 +138,7 @@ const 상품상세정보Container: React.FC<any> = React.forwardRef<any, Props>(
                                 width: '100%',
                             }}
                         >
-                            {추가상품.map(({ key, value }) => {
+                            {옵션.map(({ key, value }) => {
                                 return (
                                     <div
                                         style={{

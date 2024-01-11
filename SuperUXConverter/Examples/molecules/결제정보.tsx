@@ -3,20 +3,22 @@
 import React from 'react';
 
 interface Props {
-    제목: string;
-    과금유형: string;
+    data: {
+        제목: string;
+        과금유형: string;
 
-    /** 청구서 정보 */
-    옵션1제목: string;
+        /** 청구서 정보 */
+        옵션1제목: string;
 
-    옵션1들: { key: string; value: string }[];
+        옵션1들: { key: string; value: string }[];
+
+        /** 이전 청구서 정보 */
+        옵션2제목: string;
+
+        옵션2들: { key: string; value: string }[];
+    };
     옵션1_2키: string;
     옵션1_2값: React.ReactNode;
-
-    /** 이전 청구서 정보 */
-    옵션2제목: string;
-
-    옵션2들: { key: string; value: string }[];
     옵션2_4키: string;
     옵션2_4값: React.ReactNode;
     옵션2_6키: string;
@@ -33,24 +35,8 @@ const EventInfos: EventObject[] = [
 ];
 
 const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
-    (
-        {
-            제목,
-            과금유형,
-            옵션1제목,
-            옵션1들,
-            옵션1_2키,
-            옵션1_2값,
-            옵션2제목,
-            옵션2들,
-            옵션2_4키,
-            옵션2_4값,
-            옵션2_6키,
-            옵션2_6값,
-            onClick,
-        },
-        ref
-    ) => {
+    ({ data, 옵션1_2키, 옵션1_2값, 옵션2_4키, 옵션2_4값, 옵션2_6키, 옵션2_6값, onClick }, ref) => {
+        const { 제목, 과금유형, 옵션1제목, 옵션1들, 옵션2제목, 옵션2들 } = data;
         return (
             <div
                 style={{
@@ -427,7 +413,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                                             alignItems: 'center',
                                         }}
                                     >
-                                        {옵션2들[0].value}
+                                        {옵션2들[1].value}
                                     </p>
                                 </div>
                             </div>

@@ -1,6 +1,5 @@
 /* eslint-disable jsdoc/require-jsdoc */
-import React from 'react';
-import { Button, Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 
 interface Props {
@@ -10,26 +9,46 @@ interface Props {
     isOpen: boolean;
 }
 
+const useGetModules = (functionName: string) => {
+    const [modules, setModules] = useState<any[]>([]);
+
+    const dynamicModuleCode = `
+        export const ${functionName} = () => {
+            console.log('This is a dynamically created function in a module.');
+            // return <div>!!!!!</div>;
+        };
+    `;
+
+    useEffect(() => {
+        const module1 = new Blob([dynamicModuleCode], { type: 'application/javascript' });
+        const url = URL.createObjectURL(module1);
+
+        console.log({ module1, url });
+
+        import(url).then(module => module.test());
+        // import(url)
+        //     .then(module => {
+        //         console.log('asdfasdf');
+        //         setModules(prev => [...prev, module[functionName]]);
+        //         module.test();
+        //         URL.revokeObjectURL(url);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error creating dynamic module:', error);
+        //     });
+    }, [dynamicModuleCode, functionName]);
+
+    return modules;
+};
+
 const Test: React.FC<any> = React.forwardRef<any, Props>(({ className, name, age, isOpen }, ref) => {
-    const [active, setActive] = React.useState(false);
-    console.log({ className });
+    // const modules = useGetModules('test');
+
+    // console.log({ modules });
     return (
         <div>
-            <span style={{ color: `${active ? 'red' : 'black'}` }}>{name}</span>
-            <span>{age}</span>
-            <Box>hi</Box>
-            <Button>click</Button>
-            <button
-                type="button"
-                onClick={e => {
-                    // console.log(e);
-                    setActive(prev => !prev);
-                }}
-            >
-                click
-            </button>
-            <Typography />
-
+            {/* {modules?.[0]?.test()} */}
+            <Typography>hihi</Typography>
             {isOpen && <div> hihihi im opened </div>}
         </div>
     );

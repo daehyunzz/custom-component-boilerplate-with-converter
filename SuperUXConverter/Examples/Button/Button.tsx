@@ -8,10 +8,14 @@ interface Props {
     backgroundColor?: string;
 }
 
-// const EventInfos: EventObject[] = {
-
-// }
-
+const EventInfos: EventObject[] = [
+    {
+        Name: 'onClick',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 페이지 이동',
+    },
+];
 const Button: React.FC<any> = React.forwardRef<any, Props>(
     ({ text, color, borderColor, backgroundColor = 'white' }, ref) => {
         return (
