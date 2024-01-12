@@ -27,15 +27,34 @@ interface Props {
 
 const EventInfos: EventObject[] = [
     {
-        Name: 'onClick',
+        Name: 'click_bottom_button',
         Type: 'MouseEvent',
         Inputs: ['e'],
         Description: '클릭 시 페이지 이동',
     },
+    {
+        Name: 'click_2_6_option',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 페이지 이동1',
+    },
 ];
 
 const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
-    ({ data, 옵션1_2키, 옵션1_2값, 옵션2_4키, 옵션2_4값, 옵션2_6키, 옵션2_6값, onClick }, ref) => {
+    (
+        {
+            data,
+            옵션1_2키,
+            옵션1_2값,
+            옵션2_4키,
+            옵션2_4값,
+            옵션2_6키,
+            옵션2_6값,
+            click_bottom_button,
+            click_2_6_option,
+        },
+        ref
+    ) => {
         const { 제목, 과금유형, 옵션1제목, 옵션1들, 옵션2제목, 옵션2들 } = data;
         return (
             <div
@@ -585,7 +604,8 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                                             alignItems: 'center',
                                         }}
                                     >
-                                        {옵션2_6값}
+                                        {React.isValidElement(옵션2_6값) &&
+                                            React.cloneElement(옵션2_6값, { onClick: click_2_6_option })}
                                     </p>
                                 </div>
                             </div>
@@ -593,7 +613,7 @@ const 결제정보Container: React.FC<any> = React.forwardRef<any, Props>(
                     </div>
 
                     <button
-                        onClick={e => onClick(e)}
+                        onClick={e => click_bottom_button(e)}
                         type="button"
                         style={{
                             color: '#374151',

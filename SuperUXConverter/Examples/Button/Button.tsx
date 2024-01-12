@@ -17,12 +17,10 @@ const EventInfos: EventObject[] = [
     },
 ];
 const Button: React.FC<any> = React.forwardRef<any, Props>(
-    ({ text, color, borderColor, backgroundColor = 'white' }, ref) => {
+    ({ text, color, borderColor, backgroundColor = 'white', onClick }, ref) => {
         return (
             <button
-                onClick={() => {
-                    console.log('click');
-                }}
+                onClick={e => onClick(e)}
                 type="button"
                 style={{
                     color,
