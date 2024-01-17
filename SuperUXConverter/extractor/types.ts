@@ -86,7 +86,7 @@ export const EventObjectSchema = z.object({
     NewValueLocation: z
         .object({
             index: z.number(),
-            ValueLocation: z.array(z.string()).optional(),
+            ValueLocation: z.string().optional(),
         })
         .optional(),
     Description: z.string().optional().default(''),

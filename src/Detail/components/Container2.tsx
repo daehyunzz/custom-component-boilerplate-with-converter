@@ -8,6 +8,9 @@ interface Props {
     children: React.ReactNode;
     title: string;
     gap?: string;
+    titleColor?: string;
+    titleDivider?: string;
+    contentBackground?: string;
 }
 
 // const EventInfos: EventObject[] = [
@@ -20,55 +23,59 @@ interface Props {
 //     },
 // ];
 
-const Container: React.FC<any> = React.forwardRef<any, Props>(({ title, children, gap }, ref) => {
-    return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                borderRadius: '10px',
-                border: '1px solid #D1D5DB',
-                background: 'white',
-                width: '100%',
-            }}
-        >
+const Container: React.FC<any> = React.forwardRef<any, Props>(
+    ({ title, titleColor, titleDivider, children, gap, contentBackground }, ref) => {
+        return (
             <div
                 style={{
-                    height: '26px',
-                    width: '100%',
-                    display: 'flex',
-                    flex: 1,
-                    backgroundColor: '#F9FAFB',
-                    borderRadius: '10px 10px 0px 0px',
-                }}
-            >
-                <span
-                    style={{
-                        padding: '25px 32px',
-                        fontWeight: 600,
-                        fontStyle: 'normal',
-                        fontSize: '20px',
-                        lineHeight: '26px',
-                    }}
-                >
-                    {title}
-                </span>
-            </div>
-            <div
-                style={{
-                    boxSizing: 'border-box',
-                    padding: '32px',
-                    width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap,
+                    alignItems: 'center',
+                    borderRadius: '10px',
+                    border: '1px solid #D1D5DB',
+                    background: 'white',
+                    width: '100%',
+                    alignSelf: 'stretch',
                 }}
             >
-                {children}
+                <div
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        backgroundColor: titleColor ?? '#F9FAFB',
+                        borderRadius: '10px 10px 0px 0px',
+                        borderBottom: titleDivider ?? '0px',
+                    }}
+                >
+                    <span
+                        style={{
+                            padding: '25px 32px',
+                            fontWeight: 600,
+                            fontStyle: 'normal',
+                            fontSize: '20px',
+                            lineHeight: '26px',
+                        }}
+                    >
+                        {title}
+                    </span>
+                </div>
+                <div
+                    style={{
+                        boxSizing: 'border-box',
+                        padding: '32px',
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        backgroundColor: contentBackground ?? '#FFFFFF',
+                        flex: 1,
+                        gap,
+                    }}
+                >
+                    {children}
+                </div>
             </div>
-        </div>
-    );
-});
+        );
+    }
+);
 
 export default Container;

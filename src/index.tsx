@@ -5,8 +5,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { configure } from 'mobx';
 
-import 청구서 from 'Detail/Containers/청구서/page';
-import 주문현황 from 'Detail/Containers/주문현황/page';
+// import 청구서 from 'Detail/Containers/청구서/page';
+// import 주문현황 from 'Detail/Containers/주문현황/page';
+import 청구서양식설정Page from 'Detail/Containers/청구서양식설정/청구서양식설정Page';
+import Instructions from 'Detail/Containers/청구서양식설정/Test';
 
 // office-core 설정.
 // setCoreMode(getProgramMode() === 'Production' ? 'Production' : 'Development');
@@ -37,6 +39,8 @@ root.addEventListener('wheel', (e: MouseEvent) => {
 render(
     // <청구서.단건상품청구서상세 />
     // <주문현황.단건상품주문상세 />,
-    <주문현황.구독상품주문상세 />,
+    // <주문현황.구독상품주문상세 />,
+    <청구서양식설정Page />,
+    // <Instructions />,
     root
 );
