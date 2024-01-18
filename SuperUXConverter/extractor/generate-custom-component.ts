@@ -160,20 +160,20 @@ const replaceLibraryComponentNames = async (fileContent: string, packageLockJson
             };
         })
         .reduce((acc, { importName: { name, isDefault }, libraryName }) => {
-            const regex = new RegExp(`React.createElement\\(${name}`, 'g');
+            const regex = new RegExp(`React.createElement\\(${name},`, 'g');
             const version = versionInfos[libraryName];
 
             if (isDefault) {
                 acc = acc.replaceAll(
                     regex,
-                    `React.createElement(${formatComponentName(`${libraryName}_${name}_${version}`)}.default`
+                    `React.createElement(${formatComponentName(`${libraryName}_${name}_${version}`)}.default,`
                 );
             } else {
                 acc = acc.replaceAll(
                     regex,
                     `React.createElement(${formatComponentName(
                         `${libraryName}${version === undefined ? '' : `_${version}`}`
-                    )}.${formatComponentName(name)}`
+                    )}.${formatComponentName(name)},`
                 );
             }
 
