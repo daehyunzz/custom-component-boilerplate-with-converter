@@ -4,7 +4,6 @@ import React, { PropsWithChildren } from 'react';
 interface Props {
     타이틀: string;
     타이틀Status: boolean;
-    기업로고: React.ReactNode;
     기업로고Status: boolean;
     상품대표이미지Status: boolean;
 }
@@ -12,7 +11,19 @@ interface Props {
 /** children으로 switch와 textarea를 받아야겠다. */
 // : React.FC<any> = React.forwardRef<any, Props>(({ 타이틀, 타이틀Status, 기업로고, 기업로고Status, 상품대표이미지Status, children }, ref) => {
 const LeftContainer: React.FC<any> = React.forwardRef<any, PropsWithChildren<Props>>(
-    ({ 타이틀, 타이틀Status, 기업로고, 기업로고Status, 상품대표이미지Status, children }, ref) => {
+    (
+        {
+            타이틀,
+            타이틀Status,
+            기업로고Status,
+            상품대표이미지Status,
+            onChange타이틀Status,
+            onChange기업로고Status,
+            onChange상품대표이미지Status,
+            children,
+        },
+        ref
+    ) => {
         const childrenArray = React.Children.toArray(children);
         return (
             <div
@@ -84,10 +95,17 @@ const LeftContainer: React.FC<any> = React.forwardRef<any, PropsWithChildren<Pro
                             }}
                         >
                             {React.isValidElement(childrenArray[0]) &&
-                                React.cloneElement(childrenArray[0], { initialState: 타이틀Status })}
+                                React.cloneElement(childrenArray[0], {
+                                    ...childrenArray[0].props,
+                                    initialState: 타이틀Status,
+                                    onClick: onChange타이틀Status,
+                                })}
                             {/* <Switch initialState={타이틀Status} /> */}
                             {React.isValidElement(childrenArray[1]) &&
-                                React.cloneElement(childrenArray[1], { title: 타이틀 })}
+                                React.cloneElement(childrenArray[1], {
+                                    ...childrenArray[1].props,
+                                    title: 타이틀,
+                                })}
                             {/* <textarea
                             value={타이틀}
                             style={{
@@ -116,9 +134,14 @@ const LeftContainer: React.FC<any> = React.forwardRef<any, PropsWithChildren<Pro
                         </span>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                             {React.isValidElement(childrenArray[2]) &&
-                                React.cloneElement(childrenArray[2], { initialState: 기업로고Status })}
+                                React.cloneElement(childrenArray[2], {
+                                    ...childrenArray[2].props,
+                                    initialState: 기업로고Status,
+                                    onClick: onChange기업로고Status,
+                                })}
                             {/* <Switch initialState={기업로고Status} /> */}
-                            {React.isValidElement(childrenArray[3]) && React.cloneElement(childrenArray[3])}
+                            {React.isValidElement(childrenArray[3]) &&
+                                React.cloneElement(childrenArray[3], { ...childrenArray[3].props })}
                         </div>
                     </div>
                     {/** 사용량 */}
@@ -152,7 +175,11 @@ const LeftContainer: React.FC<any> = React.forwardRef<any, PropsWithChildren<Pro
                             상품 대표 이미지
                         </span>
                         {React.isValidElement(childrenArray[4]) &&
-                            React.cloneElement(childrenArray[4], { initialState: 상품대표이미지Status })}
+                            React.cloneElement(childrenArray[4], {
+                                ...childrenArray[4].props,
+                                initialState: 상품대표이미지Status,
+                                onClick: onChange상품대표이미지Status,
+                            })}
                         {/* <Switch initialState={상품대표이미지Status} /> */}
                     </div>
                 </div>

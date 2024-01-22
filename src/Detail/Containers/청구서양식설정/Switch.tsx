@@ -7,16 +7,16 @@ interface Props {
     initialState: boolean;
 }
 
-// const EventInfos: EventObject[] = [
-//     {
-//         Name: 'onClick',
-//         Type: 'MouseEvent',
-//         Inputs: ['e'],
-//         Description: '클릭 시 토글이 변환된다.',
-//     },
-// ];
+const EventInfos: EventObject[] = [
+    {
+        Name: 'onClick',
+        Type: 'MouseEvent',
+        Inputs: ['e'],
+        Description: '클릭 시 토글이 변환된다.',
+    },
+];
 
-const Switch: React.FC<any> = React.forwardRef<any, Props>(({ initialState }, ref) => {
+const Switch: React.FC<any> = React.forwardRef<any, Props>(({ initialState, onClick }, ref) => {
     const [isOn, setIsOn] = React.useState(initialState);
 
     const style = {
@@ -59,7 +59,10 @@ const Switch: React.FC<any> = React.forwardRef<any, Props>(({ initialState }, re
                     fontSize: '12px',
                     position: 'relative',
                 }}
-                onClick={() => setIsOn(prev => !prev)}
+                onClick={e => {
+                    onClick(e);
+                    setIsOn(prev => !prev);
+                }}
             >
                 <div style={style} />
                 <span>on</span>

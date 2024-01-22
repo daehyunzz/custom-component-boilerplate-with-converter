@@ -31,7 +31,7 @@ const TextArea: React.FC<any> = React.forwardRef<any, Props>(({ title, onChange 
                 height: '128px',
             }}
             onChange={e => {
-                onChange(e);
+                onChange?.(e);
             }}
         />
     );

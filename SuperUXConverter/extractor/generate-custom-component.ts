@@ -124,6 +124,7 @@ const formatLibraryEdgeCase = libraryName => {
 
 const replaceLibraryComponentNames = async (fileContent: string, packageLockJsonPath: string) => {
     const importInfos = getImportInfos(fileContent);
+    console.log(importInfos.map(({ importName }) => importName));
     const libraryNames = [...new Set(Object.values(importInfos.map(({ libraryName }) => libraryName)))];
 
     const packageLockJsonContent = await getFileContent(packageLockJsonPath);
@@ -163,6 +164,7 @@ const replaceLibraryComponentNames = async (fileContent: string, packageLockJson
             const regex = new RegExp(`React.createElement\\(${name},`, 'g');
             const version = versionInfos[libraryName];
 
+            console.log({ name, isDefault, libraryName });
             if (isDefault) {
                 acc = acc.replaceAll(
                     regex,

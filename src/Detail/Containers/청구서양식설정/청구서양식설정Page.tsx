@@ -1,6 +1,8 @@
 import LeftContainer from 'Detail/Containers/청구서양식설정/LeftContainer/LeftContainer';
 import Page from 'Detail/Containers/청구서양식설정/Page';
 import RightContainer from 'Detail/Containers/청구서양식설정/RightContainer/RightContainer';
+import Switch from 'Detail/Containers/청구서양식설정/Switch';
+import TextArea from 'Detail/Containers/청구서양식설정/TextArea';
 import React from 'react';
 
 const 청구서양식설정Page: React.FC<any> = React.forwardRef<any, any>((_, ref) => {
@@ -12,7 +14,13 @@ const 청구서양식설정Page: React.FC<any> = React.forwardRef<any, any>((_, 
                 기업로고="ㅁㅁ"
                 기업로고Status={false}
                 상품대표이미지Status={false}
-            />
+            >
+                <Switch />
+                <TextArea />
+                <Switch />
+                <Switch />
+                <Switch />
+            </LeftContainer>
             <RightContainer
                 타이틀="타이틀"
                 타이틀Status={true}

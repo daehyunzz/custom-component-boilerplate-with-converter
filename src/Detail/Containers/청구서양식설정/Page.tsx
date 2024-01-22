@@ -33,6 +33,22 @@ const EventInfos: EventObject[] = [
 
 // const Page: React.FC<any> = React.forwardRef<any, Props>(({ title, children }, ref) => {
 const Page: React.FC<any> = React.forwardRef<any, Props>(({ title, onCancel, onConfirm, onClick, children }, ref) => {
+    // const [타이틀, set타이틀] = React.useState('');
+    const [타이틀Status, set타이틀Status] = React.useState(false);
+    const [기업로고Status, set기업로고Status] = React.useState(false);
+    const [상품대표이미지Status, set상품대표이미지Status] = React.useState(false);
+    const handle타이틀Status = React.useCallback(() => {
+        set타이틀Status(prev => !prev);
+    }, []);
+    const handle기업로고Status = React.useCallback(() => {
+        set기업로고Status(prev => !prev);
+    }, []);
+    const handle상품대표이미지Status = React.useCallback(() => {
+        set상품대표이미지Status(prev => !prev);
+    }, []);
+    // const handle타이틀 = React.useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    //     set타이틀(e.target.value);
+    // }, []);
     return (
         <div
             style={{
@@ -44,7 +60,7 @@ const Page: React.FC<any> = React.forwardRef<any, Props>(({ title, onCancel, onC
                 boxSizing: 'border-box',
                 width: '100%',
                 height: '100%',
-                overflowY: 'hidden',
+                overflowY: 'auto',
             }}
         >
             {/** 뒤로가기 부분 */}
@@ -128,7 +144,7 @@ const Page: React.FC<any> = React.forwardRef<any, Props>(({ title, onCancel, onC
                 style={{
                     display: 'flex',
                     flex: 1,
-                    alignItems: 'center',
+                    alignItems: 'start',
                     padding: '32px 32px 56px 32px',
                     gap: '32px',
                     boxSizing: 'border-box',
@@ -139,7 +155,23 @@ const Page: React.FC<any> = React.forwardRef<any, Props>(({ title, onCancel, onC
                     background: '#f3f4f6',
                 }}
             >
-                {children}
+                {/* {children} */}
+                {React.Children.map(children, child => {
+                    if (React.isValidElement(child)) {
+                        return React.cloneElement(child, {
+                            ...child.props,
+                            onChange타이틀Status: handle타이틀Status,
+                            타이틀Status,
+                            onChange기업로고Status: handle기업로고Status,
+                            기업로고Status,
+                            onChange상품대표이미지Status: handle상품대표이미지Status,
+                            상품대표이미지Status,
+                            // onChange타이틀: handle타이틀,
+                            // 타이틀,
+                        });
+                    }
+                    return null;
+                })}
             </div>
         </div>
     );

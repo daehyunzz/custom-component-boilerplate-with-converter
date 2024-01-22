@@ -80,7 +80,6 @@ const RightContainer: React.FC<any> = React.forwardRef<any, Props>(
                     border: '1px solid #D1D5DB',
                     background: 'white',
                     width: '664px',
-                    alignSelf: 'stretch',
                 }}
             >
                 <div
