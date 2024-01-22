@@ -2,8 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import { joinPath, resolvePath, splitPath } from './parser/utils';
 import { generateSuperUXFiles } from './extractor';
+import { getFileContent } from './extractor/file-content';
+import twToCss from './twToCss/convert';
 
-const [componentFilePath] = process.argv.slice(2);
+const [actionInput, componentFilePath] = process.argv.slice(2);
 const resolvedComponentFilePath = componentFilePath && resolvePath(componentFilePath);
 const resultFileBasePath = 'SuperUXCustomComponent';
 
@@ -28,6 +30,12 @@ const generateSuperUXComponentRecursively = async (fileOrFolderPath, resultPath)
     }
 };
 
+const convertTwToCss = async (targetFilePath: string) => {
+    const originFile = await getFileContent(targetFilePath);
+    const convertedFile = twToCss(originFile);
+    await fs.promises.writeFile(targetFilePath, convertedFile);
+};
+
 (() => {
     if (resolvedComponentFilePath === undefined) {
         console.error('첫 번째 인자에 변환 대상 컴포넌트 경로가 입력되지 않았습니다.');
@@ -35,12 +43,20 @@ const generateSuperUXComponentRecursively = async (fileOrFolderPath, resultPath)
     }
 
     if (fs.existsSync(resolvedComponentFilePath) === false) {
+        console.log({ resolvedComponentFilePath });
         console.error('해당 경로에 대상 파일이 존재하지 않습니다.');
         return;
     }
 
-    const paths = splitPath(resolvedComponentFilePath);
-    const restResultPath = !paths[0].startsWith('.') ? paths.slice(1) : paths.slice(2);
+    if (actionInput === 'generate') {
+        const paths = splitPath(resolvedComponentFilePath);
+        const restResultPath = !paths[0].startsWith('.') ? paths.slice(1) : paths.slice(2);
 
-    generateSuperUXComponentRecursively(resolvedComponentFilePath, path.join(resultFileBasePath, ...restResultPath));
+        generateSuperUXComponentRecursively(
+            resolvedComponentFilePath,
+            path.join(resultFileBasePath, ...restResultPath)
+        );
+    } else if (actionInput === 'figma') {
+        convertTwToCss(resolvedComponentFilePath);
+    }
 })();
