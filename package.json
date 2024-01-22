@@ -36,6 +36,8 @@
         "mobx": "^6.3.6",
         "mobx-react-lite": "^3.2.2",
         "mui-color": "^2.0.0-beta.2",
+        "postcss": "^8.4.33",
+        "postcss-js": "^4.0.1",
         "qs": "^6.10.1",
         "react": "17.x",
         "react-dom": "17.x",
@@ -51,7 +53,8 @@
         "socket.io-client": "^4.7.2",
         "sortablejs": "1.14.0",
         "stylis": "^4.1.3",
-        "swiper": "^8.0.6"
+        "swiper": "^8.0.6",
+        "tw-to-css": "^0.0.12"
     },
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.18.6",
@@ -124,7 +127,9 @@
         "task:typing": "typed-scss-modules \"src/**/*.{css,scss}\"",
         "task:serve": "webpack serve --config ./conf/webpack.renderer.conf.js --progress",
         "serve": "run-p \"task:clean\" \"task:typing -- --watch\" \"task:serve -- --mode=development\"",
-        "extract": "ts-node --transpileOnly ./SuperUXConverter",
+        "extract": "ts-node --transpileOnly ./SuperUXConverter generate",
+        "extract:g": "ts-node --transpileOnly ./SuperUXConverter generate",
+        "extract:f": "ts-node --transpileOnly ./SuperUXConverter figma",
         "test": "jest SuperUXConverter/__test__"
     }
 }
