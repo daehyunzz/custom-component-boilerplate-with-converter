@@ -17,9 +17,9 @@ https://github.com/daehyunzz/custom-component-boilerplate-with-converter/assets/
 
 ```bash
 > npm install
-> npm run extract (타겟_컴포넌트_폴더_경로 | 타겟_컴포넌트_파일_경로)
-# ex) npm run extract SuperUXConverter/Examples/Test1/Example.tsx
-# ex) npm run extract SuperUXConverter/Examples
+> npm run extract:g (타겟_컴포넌트_폴더_경로 | 타겟_컴포넌트_파일_경로)
+# ex) npm run extract:g SuperUXConverter/Examples/Test1/Example.tsx
+# ex) npm run extract:g SuperUXConverter/Examples
 ```
 
 위 명령어를 실행하면 `SuperUXCustomComponent` 폴더 하위에 커스텀 컴포넌트 관련 파일들이 생성됩니다.
